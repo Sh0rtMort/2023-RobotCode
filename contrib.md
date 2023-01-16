@@ -11,6 +11,8 @@ Developers are welcome to add to the team 2531 robotics code whether they are pa
 - Proposed changes must follow the team's change control procedures and meet the team's programming standards.  (Both outlined below.)
 
 ## Standards:
+- Comments should leverage the use of the javadoc functionality:
+  - https://www.geeksforgeeks.org/what-is-javadoc-tool-and-how-to-use-it/
 - Code must be clearly commented 
   - Contributed code must have a header block including:
     - date written
@@ -42,7 +44,7 @@ https://stackoverflow.blog/2021/12/23/best-practices-for-writing-code-comments/
   - Cahanges must not interfere with any other functionality of the code
 - After the changes have been:
   - reviewed by the team
-  - onfirmed to be working as advertised
+  - confirmed to be working as advertised
   - understood by the team
   - confirmed that they don't introduce other problems.  
   The team may include the changes and merge to the main branch.
