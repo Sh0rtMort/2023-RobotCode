@@ -31,10 +31,10 @@ public final class Constants {
 
         //Easy reference for the Swerve Drive Kinematics for future use
         public static final SwerveDriveKinematics swerveKinematics = new SwerveDriveKinematics(
-                new Translation2d(wheelBase / 2.0, 0), //Mod 0 $
-                new Translation2d(0, -trackWidth / 2.0), //Mod 1
-                new Translation2d(-wheelBase / 2.0, 0), //Mod 2 $
-                new Translation2d(0, -trackWidth / 2.0)); //Mod 3
+                new Translation2d(wheelBase / 2.0, trackWidth / 2.0), //Mod 0 
+                new Translation2d(wheelBase / 2.0, -trackWidth / 2.0), //Mod 1
+                new Translation2d(-wheelBase / 2.0, trackWidth / 2.0), //Mod 2 
+                new Translation2d(-wheelBase / 2.0, -trackWidth / 2.0)); //Mod 3
 
         //Power Draw/Current Limits for the steering motors
         public static final int angleContinuousCurrentLimit = 25;  //Limits the continous current draw of the motors
