@@ -54,7 +54,7 @@ public final class Constants {
         public static final double angleKD = 12.0; //D value for motors
         public static final double angleKF = 0.0; //Feedforward value for motors
 
-        //PID Values for the drive motors sex
+        //PID Values for the drive motors
         public static final double driveKP = 0.84099; //P value for motors
         public static final double driveKI = 0.0; //I value for motors
         public static final double driveKD = 0.0; //D value for motors
