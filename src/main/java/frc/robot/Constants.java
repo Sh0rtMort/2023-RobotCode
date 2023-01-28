@@ -16,8 +16,8 @@ public final class Constants {
         public static final boolean invertGyro = true; // Is the GYRO Upside Down?
 
         // Drive train configuration constants
-        public static final double trackWidth = Units.inchesToMeters(22.1875);
-        public static final double wheelBase = Units.inchesToMeters(26.0);
+        public static final double trackWidth = Units.inchesToMeters(21.0);
+        public static final double wheelBase = Units.inchesToMeters(21.0);
         public static final double wheelDiameter = Units.inchesToMeters(4.0);
         public static final double wheelCircumference = wheelDiameter * Math.PI;
 
