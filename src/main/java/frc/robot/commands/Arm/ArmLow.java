@@ -18,7 +18,7 @@ public class ArmLow extends CommandBase {
   private final PIDController shoulderPIDController;
   private final PIDController elbowPIDController;
   private final PIDController wristPIDController;
-/*   private final double shoulderHighAngle;
+/*private final double shoulderHighAngle;
   private final double elbowHighAngle;
   private final double wristHighAngle; */
 

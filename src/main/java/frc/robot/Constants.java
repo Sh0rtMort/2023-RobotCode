@@ -29,6 +29,8 @@ public final class Constants {
         // Swerve module Gear Ratio configuration constants
         public static final double driveGearRatio = (8.14 / 1.0); //8.14:1 For MK4 L1 Modules
         public static final double angleGearRatio = (12.8 / 1.0); //12.8:1 For MK4 L1 Modules
+        public static final double gripperGearRatio = (25.0 / 1.0); //25:1 is just a test ratio
+
 
         //Easy reference for the Swerve Drive Kinematics for future use
         public static final SwerveDriveKinematics swerveKinematics = new SwerveDriveKinematics(
@@ -118,6 +120,7 @@ public final class Constants {
 
             public static final double gripperOpenPosition = 0; //The open position of the gripper
             public static final double gripperClosedPosition = 0; //The closed position of the gripper
+            public static final double gripperSliderPosition = 0; //Gripper slider position
 
             public static final double shoulderKP = 0; //P value for shoulder motor
             public static final double shoulderKI = 0; //I value for shoulder motor
