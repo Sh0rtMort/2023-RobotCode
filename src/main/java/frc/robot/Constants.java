@@ -145,6 +145,11 @@ public final class Constants {
             public static final double kIStrafe = 0.0;
             public static final double kDStrafe = 0.0;
 
+            //Translation PID Values
+            public static final double kPTranslation = 0.0;
+            public static final double kITranslation = 0.0;
+            public static final double kDTranslation = 0.0;
+
         }
 
     }
