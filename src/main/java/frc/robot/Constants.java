@@ -122,6 +122,31 @@ public final class Constants {
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset); //Sets the constant values for the module
         }
 
+        public static final class Targeting {
+            //Camera Names
+            public static final String frontCamera = "frontCamera";
+            public static final String backCamera = "backCamera";
+
+            //Camera Heights
+            public static final int frontCameraHeightMeters = 0;
+            public static final int backCameraHeightMeters = 0;
+
+            //Camera Angles
+            public static final double frontCameraPitchRads = Units.degreesToRadians(0);
+            public static final double backCameraPitchRads = Units.degreesToRadians(0);
+
+            //Target Heights
+            public static final double lowTagHeightMeters = 0;
+            public static final double midTagHeightMeters = 0;
+            public static final double highTagHeightMeters = 0;
+
+            //Strafe PID Values
+            public static final double kPStrafe = 0.0;
+            public static final double kIStrafe = 0.0;
+            public static final double kDStrafe = 0.0;
+
+        }
+
     }
 
     public static final class AutoConstants {

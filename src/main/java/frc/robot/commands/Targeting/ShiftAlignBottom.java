@@ -6,11 +6,17 @@ package frc.robot.commands.Targeting;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.math.controller.PIDController;
+import frc.robot.Constants;
+import edu.wpi.first.math.geometry.Translation2d;
+import frc.robot.subsystems.Swerve;
 
 public class ShiftAlignBottom extends CommandBase {
-  /** Creates a new ShiftAlign. */
+
+  private Swerve m_swerveSubsystem;
+  private Translation2d trans2D;
+
   public ShiftAlignBottom() {
-    // Use addRequirements() here to declare subsystem dependencies.
+    
   }
 
   // Called when the command is initially scheduled.
