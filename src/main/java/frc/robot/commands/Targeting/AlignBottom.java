@@ -10,6 +10,7 @@ import frc.robot.Constants;
 import edu.wpi.first.math.geometry.Translation2d;
 import frc.robot.subsystems.Swerve;
 import org.photonvision.PhotonCamera;
+import org.photonvision.PhotonUtils;
 
 public class AlignBottom extends CommandBase {
 
@@ -40,7 +41,19 @@ public class AlignBottom extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    double strafe = strafePIDController.calculate(camera.getLatestResult().getBestTarget().getYaw());
+
+    double range = PhontonUtils.calculateDistanceFromTargetMeters(
+      Constants.Targeting.frontCameraHeightMeters,
+      Constants.Targeting.targetHeightMeters,
+      Constants.Targeting.frontCameraPitchRads,
+      Units.degreesToRadians(camera.getLatestResult().getBestTarget().getPitch()));
+
+    double frontBack = frontBackPIDController.calculate(range);
+    trans2D = new Translation2d(strafe, frontBack);
+    m_swerveSubsystem.drive(trans2D, 0, false, false);
+  }
 
   // Called once the command ends or is interrupted.
   @Override
