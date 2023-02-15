@@ -14,11 +14,11 @@ import org.photonvision.PhotonUtils;
 
 public class AlignBottom extends CommandBase {
 
-  private final Swerve m_swerveSubsystem;
-  private final Translation2d trans2D;
-  private final PIDController strafePIDController;
-  private final PIDController frontBackPIDController;
-  private final PhotonCamera camera;
+  private Swerve m_swerveSubsystem;
+  private Translation2d trans2D;
+  private PIDController strafePIDController;
+  private PIDController frontBackPIDController;
+  private PhotonCamera camera;
 
   public AlignBottom(Swerve m_swerveSubsystem) {
     this.m_swerveSubsystem = m_swerveSubsystem;
