@@ -9,7 +9,7 @@ import edu.wpi.first.math.controller.PIDController;
 import frc.robot.Constants;
 import edu.wpi.first.math.geometry.Translation2d;
 import frc.robot.subsystems.Swerve;
-import photonvision.PhotonCamera;
+import org.photonvision.PhotonCamera;
 
 public class AlignBottom extends CommandBase {
 
@@ -31,6 +31,7 @@ public class AlignBottom extends CommandBase {
 
     this.frontBackPIDController = new PIDController(Constants.Targeting.translationKP, Constants.Targeting.translationKI, Constants.Targeting.translationKD);
     frontBackPIDController.setTolerance(1);
+    frontBackPIDController.setSetpoint(Constants.Targeting.TargetDistance);
   }
 
   // Called when the command is initially scheduled.

@@ -150,6 +150,9 @@ public final class Constants {
             public static final double kITranslation = 0.0;
             public static final double kDTranslation = 0.0;
 
+            //Target Distance
+            public static final double targetDistance = 0.0;
+
         }
 
     }
