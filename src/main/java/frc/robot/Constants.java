@@ -121,8 +121,9 @@ public final class Constants {
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset); //Sets the constant values for the module
         }
+    }
 
-        public static final class Targeting {
+        public static final class Vision {
             //Camera Names
             public static final String frontCamera = "frontCamera";
             public static final String backCamera = "backCamera";
@@ -155,7 +156,6 @@ public final class Constants {
 
         }
 
-    }
 
     public static final class AutoConstants {
 
