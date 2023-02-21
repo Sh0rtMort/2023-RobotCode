@@ -20,6 +20,8 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.*;
 
+import com.pathplanner.lib.server.PathPlannerServer;
+
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -44,6 +46,8 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     ctreConfigs = new CTREConfigs();
+
+    PathPlannerServer.startServer(5811); // 5811 = port number. adjust this according to your needs
 
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // sendable choosers on the dashboard once we have them.
