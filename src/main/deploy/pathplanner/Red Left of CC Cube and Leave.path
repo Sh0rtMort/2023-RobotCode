@@ -70,5 +70,25 @@
       }
     }
   ],
-  "markers": []
+  "markers": [
+    {
+      "position": 0.0,
+      "names": [
+        "Arm out"
+      ]
+    },
+    {
+      "position": 1.0000000000000004,
+      "names": [
+        "Wait 1 sec",
+        "Claw Open"
+      ]
+    },
+    {
+      "position": 1.3454545454545441,
+      "names": [
+        "Arm Store"
+      ]
+    }
+  ]
 }
