@@ -10,6 +10,11 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import com.pathplanner.lib.PathPlanner;
+import com.pathplanner.lib.PathPlannerTrajectory; 
 
 import frc.robot.autos.*;
 import frc.robot.commands.*;
@@ -57,6 +62,13 @@ public class RobotContainer {
   private final GripperOpen greasyGripper9000Open = new GripperOpen(armSubsystem);
   private final GripperClose greasyGripper9000Close = new GripperClose(armSubsystem);
 
+      /* Autonomous Mode Chooser */
+      private final SendableChooser<PathPlannerTrajectory> autoChooser = new SendableChooser<>();
+
+      /* Autonomous Modes */
+      PathPlannerTrajectory moveForward = PathPlanner.loadPath("Simple Out",
+          Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
+
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -67,6 +79,8 @@ public class RobotContainer {
     configureButtonBindings();
 
     armSubsystem.zeroAllEncoders();
+
+    configureSmartDashboard();
   }
 
   /**
@@ -94,6 +108,13 @@ public class RobotContainer {
     motorRelease.onTrue(new InstantCommand(() -> armSubsystem.releaseAllMotors()));
     motorRelease.onFalse(new InstantCommand(() -> armSubsystem.brakeAllMotors()));
     zeroArmEncoders.onTrue(new InstantCommand(() -> armSubsystem.zeroAllEncoders()));
+  }
+
+  
+  private void configureSmartDashboard() {
+    autoChooser.setDefaultOption("Drive straight out", moveForward);
+
+    SmartDashboard.putData(autoChooser);
   }
 
   /**
