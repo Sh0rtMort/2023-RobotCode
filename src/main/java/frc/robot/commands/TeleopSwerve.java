@@ -37,8 +37,8 @@ public class TeleopSwerve extends CommandBase {
 
     @Override
     public void execute() {
-        double yAxis = -controller.getRawAxis(translationAxis);  //Flips the controller values as needed and gets the value of each axis
-        double xAxis = -controller.getRawAxis(strafeAxis);
+        double xAxis = -controller.getRawAxis(translationAxis);  //Flips the controller values as needed and gets the value of each axis
+        double yAxis = -controller.getRawAxis(strafeAxis);
         double rAxis = -controller.getRawAxis(rotationAxis);
         
         // Apply deadbands from constants file to each axis
