@@ -35,7 +35,7 @@ public class GripperClose extends CommandBase {
   @Override
   public void execute() {
 
-    double gripperSpeed = gripperPIDController.calculate(m_armSubsystem.getgripperPosition());
+    double gripperSpeed = gripperPIDController.calculate(m_armSubsystem.getGripperPosition());
 
     m_armSubsystem.setGripperSpeed(gripperSpeed);
 

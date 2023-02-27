@@ -86,7 +86,7 @@ public double getWristAngle() {
   return wristMotor.getEncoder().getPosition();
 }
 
-public double getgripperPosition() {
+public double getGripperPosition() {
   return gripperFalcon.getSelectedSensorPosition();
 }
 
@@ -131,7 +131,7 @@ public void periodic(){
   SmartDashboard.putNumber("Shoulder Position: ", getShoulderAngle());
   SmartDashboard.putNumber("Elbow Position: ", getElbowAngle());
   SmartDashboard.putNumber("Wrist Position: ", getWristAngle());
-  SmartDashboard.putNumber("gripper Position: ", getgripperPosition());
+  SmartDashboard.putNumber("Gripper Position: ", getGripperPosition());
   SmartDashboard.putNumber("Wrist Speed: ", WristSpeed);
 }
 
