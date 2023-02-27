@@ -34,8 +34,8 @@ public class RobotContainer {
   private final int rotationAxis = XboxController.Axis.kRightX.value; //X axis on the right joystick, turns the robot
 
   // Creates the Axis variables for arm
-  private final int armAxis = arm.Axis.kY.value;
-  private final int gripperAxis = arm.Axis.kY.value;
+  private final int armAxis = Joystick.AxisType.kY.value;
+  private final int gripperAxis = Joystick.AxisType.kX.value;
 
 
   // Creates button mappings on the controller
