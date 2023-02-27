@@ -82,16 +82,6 @@ public final class Constants {
         //Is the steering CANCoder inverted
         public static final boolean canCoderInvert = false; //Make true if reversed
 
-        //CAN IDs and angle offsets for each module
-        //Config for Module 0, Front left
-        public static final class Mod0 {
-            public static final int driveMotorID = 4; //CAN ID for the drive motor
-            public static final int angleMotorID = 3; //CAN ID for the angle/steerer motor
-            public static final int canCoderID = 10; //CAN ID for steer encoder
-            public static final double angleOffset = 296.016; //CANCoder Angle offset
-            public static final SwerveModuleConstants constants = 
-                new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset); //Sets the constant values for the module
-        }
 
         // TO DO: Get propper values for Midium positions on all arm motors
         // Arm Motor variables
@@ -153,6 +143,17 @@ public final class Constants {
             public static final double gripperKD = 0; //D value for gripper motor FIXME BY TUNING
         }
 
+        //CAN IDs and angle offsets for each module
+        //Config for Module 0, Front left
+        public static final class Mod0 {
+            public static final int driveMotorID = 4; //CAN ID for the drive motor
+            public static final int angleMotorID = 3; //CAN ID for the angle/steerer motor
+            public static final int canCoderID = 10; //CAN ID for steer encoder
+            public static final double angleOffset = 296.016; //CANCoder Angle offset
+            public static final SwerveModuleConstants constants = 
+                new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset); //Sets the constant values for the module
+        }
+        
         // Config for Module 1, Front Right
         public static final class Mod1 {
             public static final int driveMotorID = 2; //CAN ID for the drive motor

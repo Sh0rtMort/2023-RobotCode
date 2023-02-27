@@ -28,10 +28,15 @@ public class RobotContainer {
   private final Joystick driver = new Joystick(0);
   private final Joystick arm = new Joystick(1);
 
-  // Creates the Axis variables mapped to various joysticks on the gamepad
+  // Creates the Axis variables for base
   private final int translationAxis = XboxController.Axis.kLeftY.value; //Y axis on left joystick, front to back motion
   private final int strafeAxis = XboxController.Axis.kLeftX.value; //X axis on the left joystick, left to right motion
   private final int rotationAxis = XboxController.Axis.kRightX.value; //X axis on the right joystick, turns the robot
+
+  // Creates the Axis variables for arm
+  private final int armAxis = arm.Axis.kY.value;
+  private final int gripperAxis = arm.Axis.kY.value;
+
 
   // Creates button mappings on the controller
   private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kY.value); // Y button on the controller to zero the gyro
@@ -66,7 +71,7 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
 
-    armSubsystem.zeroAllEncoders();
+    armSubsystem.zeroAllEncoders(new TeleopArm(armSubsystem, arm, armAxis, gripperAxis, openLoop));
   }
 
   /**
