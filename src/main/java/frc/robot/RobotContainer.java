@@ -124,6 +124,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // the testAuto routine will run in auton
-        return new executeAuto(swerveSubsystem, autoChooser.getSelected(), armSubsystem);
+        return new executeAuto(swerveSubsystem, autoChooser.getSelected());
   }
 }

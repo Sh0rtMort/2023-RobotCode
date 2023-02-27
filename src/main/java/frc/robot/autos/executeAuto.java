@@ -22,7 +22,7 @@ import frc.robot.commands.Claw.*;
 
 
 public class executeAuto extends SequentialCommandGroup {
-  public executeAuto(Swerve swerveSubsystem, PathPlannerTrajectory trajectory, ArmSubsystem armSubsystem) {
+  public executeAuto(Swerve swerveSubsystem, PathPlannerTrajectory trajectory) {
     swerveSubsystem.getField().getObject("Field").setTrajectory(trajectory);
 
 /*     HashMap<String, Command> eventMap = new HashMap<>();
