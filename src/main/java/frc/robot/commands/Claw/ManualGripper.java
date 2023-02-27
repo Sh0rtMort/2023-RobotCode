@@ -6,6 +6,7 @@ package frc.robot.commands.Claw;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.*;
+import frc.robot.Constants;
 import frc.robot.Constants.Swerve.Arm;
 import edu.wpi.first.wpilibj.Joystick;
 
@@ -40,7 +41,7 @@ public class ManualGripper extends CommandBase {
       System.out.println("Gripper opened all the way!!!!");
     }
 
-    gripperSpeed = .25* gripperSpeed;
+    gripperSpeed = .25 * ((Math.abs(gripperSpeed) < Constants.stickDeadband) ? 0 : gripperSpeed);
 
     m_armSubsystem.setGripperSpeed(gripperSpeed);
   }
