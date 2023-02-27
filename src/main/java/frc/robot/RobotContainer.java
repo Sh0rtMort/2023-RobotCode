@@ -71,7 +71,8 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
 
-    armSubsystem.zeroAllEncoders(new TeleopArm(armSubsystem, arm, armAxis, gripperAxis, openLoop));
+    armSubsystem.setDefaultCommand (new TeleopArm(armSubsystem, arm, armAxis, gripperAxis, openLoop));
+    armSubsystem.zeroAllEncoders();
   }
 
   /**
