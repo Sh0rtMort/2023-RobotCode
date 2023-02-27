@@ -25,9 +25,9 @@ public class executeAuto extends SequentialCommandGroup {
   public executeAuto(Swerve swerveSubsystem, PathPlannerTrajectory trajectory, ArmSubsystem armSubsystem) {
     swerveSubsystem.getField().getObject("Field").setTrajectory(trajectory);
 
-    HashMap<String, Command> eventMap = new HashMap<>();
+/*     HashMap<String, Command> eventMap = new HashMap<>();
     eventMap.put("marker1", new PrintCommand("Passed marker 1"));
-    eventMap.put("intakeDown", new ArmMid(armSubsystem));
+    eventMap.put("intakeDown", new ArmMid(armSubsystem)); */
 
     PIDController thetaController = new PIDController(
         Constants.AutoConstants.kPThetaController,
