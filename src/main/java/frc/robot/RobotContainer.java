@@ -110,11 +110,16 @@ public class RobotContainer {
 
   
   private void configureSmartDashboard() {
+    //Add auton routine options to the SmartDashboard SendableChooser
     autoChooser.setDefaultOption("Simple Straight Out", new SequentialCommandGroup(
       new SimpleOut(swerveSubsystem)));
 
     autoChooser.addOption("Straight out to Dock", new SequentialCommandGroup(
       new StraightDock(swerveSubsystem)));
+
+    autoChooser.addOption("Place Cube in Mid then Leave", new SequentialCommandGroup(
+      new DropCubeMid(swerveSubsystem, armSubsystem))
+    );
 
     SmartDashboard.putData(autoChooser);
   }
@@ -133,7 +138,7 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    // the testAuto routine will run in auton
+    //Run the selected routine from the SmartDashboard SendableChooser
         return autoChooser.getSelected();
   }
 }

@@ -59,7 +59,10 @@ public class ArmAuto extends SequentialCommandGroup {
 
         addCommands(
             new SequentialCommandGroup(
-            new InstantCommand(() -> swerveSubsystem.resetOdometry(testingTrajectory.getInitialPose())),swerveControllerCommand,    
-            new ArmMid(armSubsystem), new GripperOpen(armSubsystem), new PutThoseGrippersAway(armSubsystem)));
+            new InstantCommand(() -> swerveSubsystem.resetOdometry(testingTrajectory.getInitialPose())),
+            swerveControllerCommand,    
+            new ArmMid(armSubsystem),
+            new GripperOpen(armSubsystem),
+            new PutThoseGrippersAway(armSubsystem)));
     }
 }
