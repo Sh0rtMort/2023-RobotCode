@@ -67,8 +67,7 @@ public class RobotContainer {
       private final SendableChooser<PathPlannerTrajectory> autoChooser = new SendableChooser<>();
 
       /* Autonomous Modes */
-      PathPlannerTrajectory moveOut = PathPlanner.loadPath("Simple Out",
-          Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
+      PathPlannerTrajectory moveOut = PathPlanner.loadPath("Simple Out.path", Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -114,7 +113,7 @@ public class RobotContainer {
 
   
   private void configureSmartDashboard() {
-    autoChooser.setDefaultOption("Drive straight out", moveOut);
+    autoChooser.setDefaultOption("Drive Out", moveOut);
 
     SmartDashboard.putData(autoChooser);
   }
@@ -126,6 +125,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // the testAuto routine will run in auton
-        return new executeAuto(swerveSubsystem, autoChooser.getSelected());
+        return new executeTrajectory(swerveSubsystem, autoChooser.getSelected(), false);
   }
 }
