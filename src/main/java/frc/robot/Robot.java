@@ -49,11 +49,11 @@ public class Robot extends TimedRobot {
 
     PathPlannerServer.startServer(5811); // 5811 = port number. adjust this according to your needs
 
-    m_robotContainer.robotInit();
-
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // sendable choosers on the dashboard once we have them.
     m_robotContainer = new RobotContainer();
+    
+    m_robotContainer.robotInit();
 /*      m_visionThread =
         new Thread(
             () -> {

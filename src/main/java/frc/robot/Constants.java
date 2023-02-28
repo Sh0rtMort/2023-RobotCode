@@ -99,20 +99,20 @@ public final class Constants {
             public static final int gripperEncoderID = 34; //CAN ID for the gripper encoder assuming we use CAN based
 
             // Shoulder positions
-            public static final double shoulderHighPosition = -49140; //The high position of the shoulder
-            public static final double shoulderMidPosition = 0; //The Midium position of the shoulder
+            public static final double shoulderHighPosition = -58935; //The high position of the shoulder
+            public static final double shoulderMidPosition = -9780; //The Midium position of the shoulder
             public static final double shoulderLowPosition = -7177; //The low position of the shoulder
             public static final double shoulderStorePosition = 0; //The Stored position of the shoulder
             
             // Elbow positions
-            public static final double elbowHighPosition = -60.71527862548828; //The high position of the elbow
-            public static final double elbowMidPosition = -14.666643142700195; //The Midium position of the elbow
+            public static final double elbowHighPosition = -51.52390670776367; //The high position of the elbow
+            public static final double elbowMidPosition = -12.238142967224121; //The Midium position of the elbow
             public static final double elbowLowPosition = -37.14250183105469; //The low position of the elbow
             public static final double elbowStorePosition = 0; //The Stored position of the elbow
 
             // Wrist positions
-            public static final double wristHighPosition = -0.023809524253011; //The high position of the wrist
-            public static final double wristMidPosition = -35.714065551757812; //The Midium position of the wrist. 
+            public static final double wristHighPosition = -31.47592544555664; //The high position of the wrist
+            public static final double wristMidPosition = -20.66657829284668; //The Midium position of the wrist. 
             public static final double wristLowPosition = -60.92958450317383; //The low position of the wrist
             public static final double wristStorePosition = 0; //The Stored position of the elbow
 
@@ -121,7 +121,7 @@ public final class Constants {
             public static final double gripperClosedPosition = 80289; //The closed position of the gripper
 
             // PID values for the Shoulder
-            public static final double shoulderKP = 0.00005; //P value for shoulder motor FIXME BY TUNING
+            public static final double shoulderKP = 0.075; //P value for shoulder motor FIXME BY TUNING
             public static final double shoulderKI = 0; //I value for shoulder motor FIXME BY TUNING
             public static final double shoulderKD = 0; //D value for shoulder motor FIXME BY TUNING
             
@@ -132,7 +132,7 @@ public final class Constants {
 
             // PID values for the Wrist
             //If you change the speed in the command, change the values inversly and proportionally
-            public static final double wristKP = 0.03 ; //P value for wrist motor FIXME BY TUNING
+            public static final double wristKP = 0.075; //P value for wrist motor FIXME BY TUNING
             public static final double wristKI = 0.0000; //I value for wrist motor FIXME BY TUNING
             public static final double wristKD = 0.00000; //D value for wrist motor FIXME BY TUNING
             

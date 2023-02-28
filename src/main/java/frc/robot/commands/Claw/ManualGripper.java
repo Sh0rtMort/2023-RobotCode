@@ -39,7 +39,7 @@ public class ManualGripper extends CommandBase {
     if(gripperPosition <= Arm.gripperOpenPosition+7000 && gripperSpeed < 0) {
       gripperSpeed = 0;
       m_armSubsystem.stopGripper();
-      System.out.println("Gripper opened all the way!!!!");
+      //System.out.println("Gripper opened all the way!!!!");
     }
 
     gripperSpeed = 1 * ((Math.abs(gripperSpeed) < Constants.stickDeadband) ? 0 : gripperSpeed);

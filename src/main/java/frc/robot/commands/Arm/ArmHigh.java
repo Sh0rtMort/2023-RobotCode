@@ -48,9 +48,9 @@ public class ArmHigh extends CommandBase  {
   public void execute() {
     double shoulderSpeed = shoulderPIDController.calculate(m_armSubsystem.getShoulderAngle()); //Calculates the error for the shoulder
     double elbowSpeed = elbowPIDController.calculate(m_armSubsystem.getElbowAngle()); //Calculates the error for the elbow
-    double wristSpeed = 1.5*wristPIDController.calculate(m_armSubsystem.getWristAngle()); //Calculates the error for the wrist
+    double wristSpeed = wristPIDController.calculate(m_armSubsystem.getWristAngle()); //Calculates the error for the wrist
 
-    m_armSubsystem.setSpeeds(0, elbowSpeed, wristSpeed); //Sets the speeds for the elbow and wrist motors Shoulder speed set to 0 for testing purposes
+    m_armSubsystem.setSpeeds(shoulderSpeed, elbowSpeed, wristSpeed); //Sets the speeds for the elbow and wrist motors Shoulder speed set to 0 for testing purposes
 
     System.out.println("Shoulder Angle: " + m_armSubsystem.getShoulderAngle()); //Prints the shoulder angle to the console
     System.out.println("Elbow Angle: " + m_armSubsystem.getElbowAngle()); //Prints the elbow angle to the console

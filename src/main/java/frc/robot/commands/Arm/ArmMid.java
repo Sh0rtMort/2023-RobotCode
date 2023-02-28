@@ -48,7 +48,7 @@ public class ArmMid extends CommandBase  {
   public void execute() {
     double shoulderSpeed = shoulderPIDController.calculate(m_armSubsystem.getShoulderAngle()); //Gets the angle of the shoulder and calculates the error
     double elbowSpeed = elbowPIDController.calculate(m_armSubsystem.getElbowAngle()); //Gets the angle of the elbow and calculates the error
-    double wristSpeed = 1.5*wristPIDController.calculate(m_armSubsystem.getWristAngle()); //Gets the angle of the wrist and calculates the error
+    double wristSpeed = wristPIDController.calculate(m_armSubsystem.getWristAngle()); //Gets the angle of the wrist and calculates the error
 
     m_armSubsystem.setSpeeds(shoulderSpeed, elbowSpeed, wristSpeed); //Sets the speeds of the motors based on the calculated error
 
