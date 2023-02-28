@@ -39,18 +39,18 @@ public class DropCubeMid extends SequentialCommandGroup {
           .setKinematics(Constants.Swerve.swerveKinematics); //Gets all the kinematics info for swerve
 
     Trajectory driveToGridTraj = TrajectoryGenerator.generateTrajectory(
-          // Sets the start direction
-          new Pose2d(1, 0, new Rotation2d(180)),
+          // Sets the start position
+          new Pose2d(1.355, 0, new Rotation2d(180)),
+          //Internal waypoints to drive to grid
           List.of(
               new Translation2d(.75, 0), //First internal waypoint
               new Translation2d(.5, 0)), //Second internal waypoint
-          new Pose2d(0, 0, new Rotation2d(180)), //Get to charge station
+          new Pose2d(0.355, 0, new Rotation2d(180)), //Get to grid
           config);
 
     Trajectory leaveCommunityZoneTraj = TrajectoryGenerator.generateTrajectory(
-      // Sets the start direction
-      new Pose2d(0, 0, new Rotation2d(180)),
-      // Should go in a straight line
+      new Pose2d(0.355, 0, new Rotation2d(180)),
+      //Internal waypoints to drive out of the community zone
       List.of(
           new Translation2d(1, 0), //First internal waypoint
           new Translation2d(2, 0), //Second internal waypoint
