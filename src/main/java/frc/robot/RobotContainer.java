@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -64,10 +65,8 @@ public class RobotContainer {
   private final GripperClose greasyGripper9000Close = new GripperClose(armSubsystem);
 
       /* Autonomous Mode Chooser */
-      private final SendableChooser<PathPlannerTrajectory> autoChooser = new SendableChooser<>();
+      private final SendableChooser<Command> autoChooser = new SendableChooser<>();
 
-      /* Autonomous Modes */
-      PathPlannerTrajectory moveOut = PathPlanner.loadPath("Simple Out.path", Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -111,7 +110,11 @@ public class RobotContainer {
 
   
   private void configureSmartDashboard() {
-    autoChooser.setDefaultOption("Drive Out", moveOut);
+    autoChooser.setDefaultOption("Simple Straight Out", new SequentialCommandGroup(
+      new SimpleOut(swerveSubsystem)));
+
+    autoChooser.addOption("Straight out to Dock", new SequentialCommandGroup(
+      new StraightDock(swerveSubsystem)));
 
     SmartDashboard.putData(autoChooser);
   }
@@ -131,6 +134,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // the testAuto routine will run in auton
-        return new executeTrajectory(swerveSubsystem, autoChooser.getSelected(), false);
+        return autoChooser.getSelected();
   }
 }
