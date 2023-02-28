@@ -35,17 +35,17 @@ public class RobotContainer {
 
   // Creates button mappings on the controller
   private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kY.value); // Y button on the controller to zero the gyro
-  private final JoystickButton armUpAndOut = new JoystickButton(arm, 3); // Arm up and out
-  private final JoystickButton armDownAndOut = new JoystickButton(arm, 2); // Arm down and out
-  private final JoystickButton armStore = new JoystickButton(arm, 4); // Default position
-  private final JoystickButton armMiddle = new JoystickButton(arm, 5); // Place object in middle row
-  private final JoystickButton motorRelease = new JoystickButton(arm, 8); //Arm free fall
-  private final JoystickButton zeroArmEncoders = new JoystickButton(arm, 9); 
-  private final JoystickButton gripperOpen = new JoystickButton(arm, 6); //Opens claw
-  private final JoystickButton gripperClose = new JoystickButton(arm, 7); //Close claw
+  private final JoystickButton armUpAndOut = new JoystickButton(arm, XboxController.Axis.kLeftY.value); // Arm up and out
+  private final JoystickButton armDownAndOut = new JoystickButton(arm, -XboxController.Axis.kLeftY.value); // Arm down and out
+  private final JoystickButton armStore = new JoystickButton(arm, XboxController.Button.kX.value); // Default position
+  private final JoystickButton armMiddle = new JoystickButton(arm, XboxController.Button.kLeftStick.value); // Place object in middle row
+  private final JoystickButton motorRelease = new JoystickButton(arm, XboxController.Button.kRightStick.value); //Arm free fall
+  private final JoystickButton zeroArmEncoders = new JoystickButton(arm, XboxController.Button.kRightBumper.value); 
+  private final JoystickButton gripperOpen = new JoystickButton(arm, XboxController.Axis.kRightX.value); //Opens claw
+  private final JoystickButton gripperClose = new JoystickButton(arm, -XboxController.Axis.kRightX.value); //Close claw
 
 
-  // Define the Swerve subsystem as swerveSubsystem
+  // Define Subsystems
   private final Swerve swerveSubsystem = new Swerve();
   private final ArmSubsystem armSubsystem = new ArmSubsystem();
 
