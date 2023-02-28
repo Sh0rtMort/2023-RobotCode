@@ -99,21 +99,21 @@ public final class Constants {
             public static final int gripperEncoderID = 34; //CAN ID for the gripper encoder assuming we use CAN based
 
             // Shoulder positions
-            public static final double shoulderHighPosition = -58935; //The high position of the shoulder
-            public static final double shoulderMidPosition = -9780; //The Midium position of the shoulder
-            public static final double shoulderLowPosition = -7177; //The low position of the shoulder
+            public static final double shoulderHighPosition = -48265; //The high position of the shoulder should be -58935 if we are using the shoulder
+            public static final double shoulderMidPosition = -9780; //The Midium position of the shoulder should be -9780 if we are using the shoulder
+            public static final double shoulderLowPosition = -7177; //The low position of the shoulder should be -7177 if we are using the shoulder
             public static final double shoulderStorePosition = 0; //The Stored position of the shoulder
             
             // Elbow positions
-            public static final double elbowHighPosition = -51.52390670776367; //The high position of the elbow
-            public static final double elbowMidPosition = -12.238142967224121; //The Midium position of the elbow
-            public static final double elbowLowPosition = -37.14250183105469; //The low position of the elbow
+            public static final double elbowHighPosition = -55.096073150634766; //The high position of the elbow should be -51.52390670776367 if we are using the shoulder
+            public static final double elbowMidPosition = -14.666643142700195; //The Midium position of the elbow should be -12.238142967224121 if we are using the shoulder
+            public static final double elbowLowPosition = -37.14250183105469; //The low position of the elbow should be -37.14250183105469 if we are using the shoulder
             public static final double elbowStorePosition = 0; //The Stored position of the elbow
 
             // Wrist positions
-            public static final double wristHighPosition = -31.47592544555664; //The high position of the wrist
-            public static final double wristMidPosition = -20.66657829284668; //The Midium position of the wrist. 
-            public static final double wristLowPosition = -60.92958450317383; //The low position of the wrist
+            public static final double wristHighPosition = -61.929683685302734; //The high position of the wrist should be -31.47592544555664 if we are using the shoulder
+            public static final double wristMidPosition = -35.714065551757812; //The Midium position of the wrist should be -20.66657829284668 if we are using the shoulder
+            public static final double wristLowPosition = -60.92958450317383; //The low position of the wrist should be -60.92958450317383 if we are using the shoulder
             public static final double wristStorePosition = 0; //The Stored position of the elbow
 
             // Claw/gripper positions

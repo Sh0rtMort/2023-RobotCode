@@ -52,7 +52,8 @@ public class ArmLow extends CommandBase {
     double elbowSpeed = elbowPIDController.calculate(m_armSubsystem.getElbowAngle()); //Calculates the speed for the elbow
     double wristSpeed = wristPIDController.calculate(m_armSubsystem.getWristAngle());   
 
-    m_armSubsystem.setSpeeds(shoulderSpeed, elbowSpeed, wristSpeed); //Sets the speeds for the arm motors
+    //Disable the shoulder motor cuz its always broken lel
+    m_armSubsystem.setSpeeds(0, elbowSpeed, wristSpeed); //Sets the speeds for the arm motors
 
     System.out.println("Shoulder Angle: " + m_armSubsystem.getShoulderAngle()); //Prints the angles of the arm to the console
     System.out.println("Elbow Angle: " + m_armSubsystem.getElbowAngle()); //Prints the angles of the arm to the console
