@@ -79,8 +79,6 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
 
-    armSubsystem.zeroAllEncoders();
-
     configureSmartDashboard();
   }
 
@@ -116,6 +114,14 @@ public class RobotContainer {
     autoChooser.setDefaultOption("Drive Out", moveOut);
 
     SmartDashboard.putData(autoChooser);
+  }
+
+  public void disabledInit() {
+    swerveSubsystem.resetModulesToAbsolute();
+  }
+
+  public void robotInit() {
+    armSubsystem.zeroAllEncoders();
   }
 
   /**
