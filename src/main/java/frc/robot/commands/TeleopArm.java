@@ -33,7 +33,7 @@ public class TeleopArm extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double xAxis = controller.getRawAxis(gripperAxis); 
-    double yAxis = -controller.getRawAxis(armAxis);
+    double kX = controller.getRawAxis(gripperAxis); 
+    double kY = -controller.getRawAxis(armAxis);
   }
 }
