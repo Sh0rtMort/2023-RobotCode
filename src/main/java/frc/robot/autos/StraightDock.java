@@ -17,23 +17,21 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 
-public class SimpleOut extends SequentialCommandGroup {
-    public SimpleOut(Swerve swerveSubsystem){
+public class StraightDock extends SequentialCommandGroup {
+    public StraightDock(Swerve swerveSubsystem){
         TrajectoryConfig config = new TrajectoryConfig(
                 Constants.AutoConstants.kMaxSpeedMetersPerSecond, //Sets Max speed of the bot in auton
                 Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared) //Sets Max acceleration of the bot in auton
                     .setKinematics(Constants.Swerve.swerveKinematics); //Gets all the kinematics info for swerve
 
         // Basic trajectory using the traj generator tool built into WPILib
-        Trajectory LeaveTrajectory = TrajectoryGenerator.generateTrajectory(
+        Trajectory testingTrajectory = TrajectoryGenerator.generateTrajectory(
                 // Sets the start direction
                 new Pose2d(0, 0, new Rotation2d(0)),
                 // Should go in a straight line
                 List.of(
-                    new Translation2d(1, 0), //1st point 1 meter ahead of where we started
-                    new Translation2d(2, 0), //2nd point 2 meters ahead of where we started
-                    new Translation2d(3, 0)), //2nd point 2 meters ahead of where we started
-                new Pose2d(5, 0, new Rotation2d(0)), //Get to charge station
+                    new Translation2d(1, 0)), //1st point 1 meter ahead of where we started
+                new Pose2d(3.5, 0, new Rotation2d(0)), //Sets end pose 3 meters ahead of starting point
                 config);
 
         PIDController xController = new PIDController(Constants.AutoConstants.kPXController, 0, 0);
@@ -43,7 +41,7 @@ public class SimpleOut extends SequentialCommandGroup {
         thetaController.enableContinuousInput(-Math.PI, Math.PI);
 
         SwerveControllerCommand swerveControllerCommand = new SwerveControllerCommand(
-                LeaveTrajectory,
+                testingTrajectory,
                 swerveSubsystem::getPose,
                 Constants.Swerve.swerveKinematics,
                 xController,
@@ -54,7 +52,7 @@ public class SimpleOut extends SequentialCommandGroup {
 
 
         addCommands(
-            new InstantCommand(() -> swerveSubsystem.resetOdometry(LeaveTrajectory.getInitialPose())),
+            new InstantCommand(() -> swerveSubsystem.resetOdometry(testingTrajectory.getInitialPose())),
             swerveControllerCommand);
     }
 }
