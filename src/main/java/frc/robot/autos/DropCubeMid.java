@@ -32,30 +32,36 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 public class DropCubeMid extends SequentialCommandGroup {
   public DropCubeMid(Swerve swerveSubsystem, ArmSubsystem armSubsystem) {
 
-    TrajectoryConfig config = new TrajectoryConfig(
+    TrajectoryConfig firstConfig = new TrajectoryConfig(
+      Constants.AutoConstants.kMaxSpeedMetersPerSecond, //Sets Max speed of the bot in auton
+      Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared) //Sets Max acceleration of the bot in auton
+          .setKinematics(Constants.Swerve.swerveKinematics); //Gets all the kinematics info for swerve
+
+          TrajectoryConfig secondConfig = new TrajectoryConfig(
       Constants.AutoConstants.kMaxSpeedMetersPerSecond, //Sets Max speed of the bot in auton
       Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared) //Sets Max acceleration of the bot in auton
           .setKinematics(Constants.Swerve.swerveKinematics); //Gets all the kinematics info for swerve
 
     Trajectory driveToGridTraj = TrajectoryGenerator.generateTrajectory(
           // Sets the start position
-          new Pose2d(1.355, 0, new Rotation2d(180)),
+          new Pose2d(0.355, 0, new Rotation2d(0)),
           //Internal waypoints to drive to grid
           List.of(
-              new Translation2d(.75, 0), //First internal waypoint
-              new Translation2d(.5, 0)), //Second internal waypoint
-          new Pose2d(0.355, 0, new Rotation2d(180)), //Get to grid
-          config);
+              new Translation2d(0.25, -.01), //First internal waypoint
+              new Translation2d(1.0, .01)), //Second internal waypoint
+          new Pose2d(1.355, 0, new Rotation2d(0)), //Get to grid
+          firstConfig);
 
     Trajectory leaveCommunityZoneTraj = TrajectoryGenerator.generateTrajectory(
-      new Pose2d(0.355, 0, new Rotation2d(180)),
-      //Internal waypoints to drive out of the community zone
+      // Sets the start position
+      new Pose2d(1.355, 0, new Rotation2d(0)),
+      //Internal waypoints to drive to grid
       List.of(
-          new Translation2d(1, 0), //First internal waypoint
-          new Translation2d(2, 0), //Second internal waypoint
-          new Translation2d(3, 0)),//Third internal waypoint
-      new Pose2d(4, 0, new Rotation2d(0)), //Get to resting position to start match
-      config);
+          new Translation2d(1.0, -.01), //First internal waypoint
+          new Translation2d(0.75, .01)), //Second internal waypoint
+      new Pose2d(0, 0, new Rotation2d(0)), //Get to grid
+      secondConfig);
+
 
     PIDController xController = new PIDController(Constants.AutoConstants.kPXController, 0, 0);
     PIDController yController = new PIDController(Constants.AutoConstants.kPYController, 0, 0);
@@ -85,20 +91,30 @@ public class DropCubeMid extends SequentialCommandGroup {
 
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new ParallelCommandGroup(
-      new ArmMid(armSubsystem),
-      new InstantCommand(() -> swerveSubsystem.resetOdometry(driveToGridTraj.getInitialPose())),
-      firstSwerveControllerCommand
-    )
-    );
-    addCommands(new SequentialCommandGroup(
+/*     addCommands(new SequentialCommandGroup(
       new WaitCommand(1),
       new GripperOpen(armSubsystem),
       new WaitCommand(0.5),
       new InstantCommand(() -> swerveSubsystem.resetOdometry(leaveCommunityZoneTraj.getInitialPose())),
       secondSwerveControllerCommand
-    )
+    )); */
 
+    //addCommands(new ArmMid(armSubsystem).withTimeout(.5));
+
+    addCommands(
+      new InstantCommand(() -> swerveSubsystem.resetOdometry(driveToGridTraj.getInitialPose())),
+      firstSwerveControllerCommand
+    );
+
+    addCommands(new SequentialCommandGroup(
+/*       new WaitCommand(.5),
+      new GripperOpen(armSubsystem),
+      new WaitCommand(0.5), */
+    ));
+
+    addCommands (
+      new InstantCommand(() -> swerveSubsystem.resetOdometry(leaveCommunityZoneTraj.getInitialPose())),
+      secondSwerveControllerCommand
     );
   }
 }
