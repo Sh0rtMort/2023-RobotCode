@@ -33,7 +33,7 @@ public class SimpleOut extends SequentialCommandGroup {
                     new Translation2d(1, 0), //1st point 1 meter ahead of where we started
                     new Translation2d(2, 0), //2nd point 2 meters ahead of where we started
                     new Translation2d(3, 0)), //2nd point 2 meters ahead of where we started
-                new Pose2d(5, 0, new Rotation2d(0)), //Get to charge station
+                new Pose2d(3, 0, new Rotation2d(0)), //Get to charge station
                 config);
 
         PIDController xController = new PIDController(Constants.AutoConstants.kPXController, 0, 0);
