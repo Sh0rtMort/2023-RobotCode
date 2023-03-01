@@ -130,6 +130,7 @@ public class RobotContainer {
 
   public void robotInit() {
     armSubsystem.zeroAllEncoders();
+    armSubsystem.init();
   }
 
   /**

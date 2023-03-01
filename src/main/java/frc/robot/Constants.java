@@ -145,20 +145,20 @@ public final class Constants {
         //CAN IDs and angle offsets for each module
         //Config for Module 0, Front left
         public static final class Mod0 {
-            public static final int driveMotorID = 4; //CAN ID for the drive motor
-            public static final int angleMotorID = 3; //CAN ID for the angle/steerer motor
-            public static final int canCoderID = 10; //CAN ID for steer encoder
-            public static final double angleOffset = 296.016; //CANCoder Angle offset
+            public static final int driveMotorID = 2; //CAN ID for the drive motor
+            public static final int angleMotorID = 1; //CAN ID for the angle/steerer motor
+            public static final int canCoderID = 9; //CAN ID for steer encoder
+            public static final double angleOffset = 62.314; //CANCoder Angle offset
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset); //Sets the constant values for the module
         }
         
         // Config for Module 1, Front Right
         public static final class Mod1 {
-            public static final int driveMotorID = 2; //CAN ID for the drive motor
-            public static final int angleMotorID = 1; //CAN ID for the angle/steerer motor
-            public static final int canCoderID = 9; //CAN ID for steer encoder
-            public static final double angleOffset = 158.730; //CANCoder Angle offset
+            public static final int driveMotorID = 4; //CAN ID for the drive motor
+            public static final int angleMotorID = 3; //CAN ID for the angle/steerer motor
+            public static final int canCoderID = 10; //CAN ID for steer encoder
+            public static final double angleOffset = 22.412; //CANCoder Angle offset
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset); //Sets the constant values for the module
         }
@@ -168,7 +168,7 @@ public final class Constants {
             public static final int driveMotorID = 6; //CAN ID for the drive motor
             public static final int angleMotorID = 5; //CAN ID for the angle/steerer motor
             public static final int canCoderID = 11; //CAN ID for steer encoder
-            public static final double angleOffset = 153.809-180.00; //CANCoder Angle offset
+            public static final double angleOffset = 164.355; //CANCoder Angle offset
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset); //Sets the constant values for the module
         }
@@ -178,7 +178,7 @@ public final class Constants {
             public static final int driveMotorID = 8; //CAN ID for the drive motor
             public static final int angleMotorID = 7; //CAN ID for the angle/steerer motor
             public static final int canCoderID = 12; //CAN ID for steer encoder
-            public static final double angleOffset = 72.158; //CANCoder Angle offset
+            public static final double angleOffset = 252.949; //CANCoder Angle offset
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset); //Sets the constant values for the module
         }

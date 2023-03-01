@@ -141,11 +141,11 @@ public class Swerve extends SubsystemBase {
 
         for(SwerveModule mod : mSwerveMods){
             SmartDashboard.putNumber("Mod " + mod.moduleNumber + " CANCoder", mod.getCanCoder().getDegrees());
-            SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Integrated encoder", mod.getState().angle.getDegrees());
+            //SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Integrated encoder", mod.getState().angle.getDegrees());
             SmartDashboard.putNumber("Mod " + mod.moduleNumber + " WE ZOWOMIN HOW FAST", mod.getState().speedMetersPerSecond);
             //SmartDashboard.putNumber("Mod" + mod.moduleNumber + "Auton Voltages" + (mod.getState().speedMetersPerSecond / Constants.AutoConstants.kMaxSpeedMetersPerSecond * 13), 0);  
-            SmartDashboard.putNumber("Mod" + mod.moduleNumber + " Angle_Current", mod.getAngleCurrent());
-            SmartDashboard.putNumber("Mod" + mod.moduleNumber + " Drive_Current", mod.getDriveCurrent());
+            //SmartDashboard.putNumber("Mod" + mod.moduleNumber + " Angle_Current", mod.getAngleCurrent());
+            //SmartDashboard.putNumber("Mod" + mod.moduleNumber + " Drive_Current", mod.getDriveCurrent());
 
         }
     }
