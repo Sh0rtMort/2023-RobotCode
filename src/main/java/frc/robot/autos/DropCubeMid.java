@@ -7,6 +7,7 @@ package frc.robot.autos;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
 import frc.robot.commands.Arm.ArmMid;
+import frc.robot.commands.Arm.PutThoseGrippersAway;
 import frc.robot.commands.Claw.GripperOpen;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.Swerve;
@@ -89,17 +90,7 @@ public class DropCubeMid extends SequentialCommandGroup {
       swerveSubsystem::setModuleStates,
       swerveSubsystem);
 
-    // Add your commands in the addCommands() call, e.g.
-    // addCommands(new FooCommand(), new BarCommand());
-/*     addCommands(new SequentialCommandGroup(
-      new WaitCommand(1),
-      new GripperOpen(armSubsystem),
-      new WaitCommand(0.5),
-      new InstantCommand(() -> swerveSubsystem.resetOdometry(leaveCommunityZoneTraj.getInitialPose())),
-      secondSwerveControllerCommand
-    )); */
-
-    //addCommands(new ArmMid(armSubsystem).withTimeout(.5));
+    addCommands(new ArmMid(armSubsystem).withTimeout(.5));
 
     addCommands(
       new InstantCommand(() -> swerveSubsystem.resetOdometry(driveToGridTraj.getInitialPose())),
@@ -107,9 +98,9 @@ public class DropCubeMid extends SequentialCommandGroup {
     );
 
     addCommands(new SequentialCommandGroup(
-/*       new WaitCommand(.5),
       new GripperOpen(armSubsystem),
-      new WaitCommand(0.5), */
+      new WaitCommand(0.5),
+      new PutThoseGrippersAway(armSubsystem)
     ));
 
     addCommands (
