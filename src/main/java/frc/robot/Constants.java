@@ -106,14 +106,14 @@ public final class Constants {
             
             // Elbow positions
             public static final double elbowHighPosition = -55.096073150634766; //The high position of the elbow should be -51.52390670776367 if we are using the shoulder
-            public static final double elbowMidPosition = -14.666643142700195; //The Midium position of the elbow should be -12.238142967224121 if we are using the shoulder
-            public static final double elbowLowPosition = -37.14250183105469; //The low position of the elbow should be -37.14250183105469 if we are using the shoulder
+            public static final double elbowMidPosition = -21.642751; //The Midium position of the elbow should be -12.238142967224121 if we are using the shoulder
+            public static final double elbowLowPosition = -19.09517478; //The low position of the elbow should be -37.14250183105469 if we are using the shoulder
             public static final double elbowStorePosition = 0; //The Stored position of the elbow
 
             // Wrist positions
             public static final double wristHighPosition = -61.929683685302734; //The high position of the wrist should be -31.47592544555664 if we are using the shoulder
-            public static final double wristMidPosition = -35.714065551757812; //The Midium position of the wrist should be -20.66657829284668 if we are using the shoulder
-            public static final double wristLowPosition = -60.92958450317383; //The low position of the wrist should be -60.92958450317383 if we are using the shoulder
+            public static final double wristMidPosition = -56.2148399; //The Midium position of the wrist should be -20.66657829284668 if we are using the shoulder
+            public static final double wristLowPosition = -20.21420669; //The low position of the wrist should be -60.92958450317383 if we are using the shoulder
             public static final double wristStorePosition = 0; //The Stored position of the elbow
 
             // Claw/gripper positions

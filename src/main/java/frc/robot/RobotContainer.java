@@ -38,17 +38,18 @@ public class RobotContainer {
   private final int translationAxis = XboxController.Axis.kLeftY.value; //Y axis on left joystick, front to back motion
   private final int strafeAxis = XboxController.Axis.kLeftX.value; //X axis on the left joystick, left to right motion
   private final int rotationAxis = XboxController.Axis.kRightX.value; //X axis on the right joystick, turns the robot
-  private final int gripperAxis = 0;
+  private final int gripperAxis = XboxController.Axis.kRightX.value;
 
   // Creates button mappings on the controller
   private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kY.value); // Y button on the controller to zero the gyro
+  private final int slowMode = XboxController.Button.kB.value;
 
   private final JoystickButton armUpAndOut = new JoystickButton(arm, XboxController.Button.kY.value); // Arm up and out
   private final JoystickButton armDownAndOut = new JoystickButton(arm, XboxController.Button.kA.value); // Arm down and out
   private final JoystickButton armStore = new JoystickButton(arm, XboxController.Button.kB.value); // Default position
   private final JoystickButton armMiddle = new JoystickButton(arm, XboxController.Button.kX.value); // Place object in middle row
-  private final JoystickButton motorRelease = new JoystickButton(arm, XboxController.Button.kRightStick.value); //Arm free fall
-  private final JoystickButton zeroArmEncoders = new JoystickButton(arm, XboxController.Button.kLeftStick.value); 
+  private final JoystickButton motorRelease = new JoystickButton(arm, 7); //Arm free fall
+  private final JoystickButton zeroArmEncoders = new JoystickButton(arm, 8); 
   private final JoystickButton gripperOpen = new JoystickButton(arm, XboxController.Button.kLeftBumper.value); //Opens claw
   private final JoystickButton gripperClose = new JoystickButton(arm, XboxController.Button.kRightBumper.value); //Close claw
 
@@ -56,7 +57,6 @@ public class RobotContainer {
   // Define the Swerve subsystem as swerveSubsystem
   private final Swerve swerveSubsystem = new Swerve();
   private final ArmSubsystem armSubsystem = new ArmSubsystem();
-
   private final ArmHigh armHigh = new ArmHigh(armSubsystem);
   private final ArmLow armLow = new ArmLow(armSubsystem);
   private final PutThoseGrippersAway armStow = new PutThoseGrippersAway(armSubsystem);
@@ -64,6 +64,7 @@ public class RobotContainer {
 
   private final GripperOpen greasyGripper9000Open = new GripperOpen(armSubsystem);
   private final GripperClose greasyGripper9000Close = new GripperClose(armSubsystem);
+
 
       /* Autonomous Mode Chooser */
       private final SendableChooser<Command> autoChooser = new SendableChooser<>();
@@ -74,7 +75,7 @@ public class RobotContainer {
   public RobotContainer() {
     boolean fieldRelative = true; // Do you want field oriented control?
     boolean openLoop = true; 
-    swerveSubsystem.setDefaultCommand(new TeleopSwerve(swerveSubsystem, driver, translationAxis, strafeAxis, rotationAxis, fieldRelative, openLoop));  //Default command to drive the bot
+    swerveSubsystem.setDefaultCommand(new TeleopSwerve(swerveSubsystem, driver, translationAxis, strafeAxis, rotationAxis, fieldRelative, openLoop, slowMode));  //Default command to drive the bot
     //armSubsystem.setDefaultCommand(new ManualGripper(armSubsystem, arm, gripperAxis));
     // Configure the button bindings
     configureButtonBindings();

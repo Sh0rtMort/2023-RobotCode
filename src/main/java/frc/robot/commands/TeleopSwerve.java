@@ -3,8 +3,10 @@ package frc.robot.commands;
 import frc.robot.Constants;
 import frc.robot.subsystems.Swerve;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 
 public class TeleopSwerve extends CommandBase {
@@ -20,9 +22,12 @@ public class TeleopSwerve extends CommandBase {
     private int translationAxis;
     private int strafeAxis;
     private int rotationAxis;
+    private int slowMode;
+    private double trans_multiplier;
+    private double rot_multiplier;
 
     //Control Stuff for the driver
-    public TeleopSwerve(Swerve swerveSubsystem, Joystick controller, int translationAxis, int strafeAxis, int rotationAxis, boolean fieldRelative, boolean openLoop) { //Inputs from RobotContainer
+    public TeleopSwerve(Swerve swerveSubsystem, Joystick controller, int translationAxis, int strafeAxis, int rotationAxis, boolean fieldRelative, boolean openLoop, int slowMode) { //Inputs from RobotContainer
         this.swerveSubsystem = swerveSubsystem;
         addRequirements(swerveSubsystem);
 
@@ -33,10 +38,23 @@ public class TeleopSwerve extends CommandBase {
         this.rotationAxis = rotationAxis;
         this.fieldRelative = fieldRelative;
         this.openLoop = openLoop;
+        this.slowMode = slowMode;
+
     }
 
     @Override
     public void execute() {
+
+        if(controller.getRawButton(slowMode)){
+            System.out.println("SLOW MODE");
+            trans_multiplier = .25;
+            rot_multiplier = .5;
+        }
+        else{
+            trans_multiplier = .6;
+            rot_multiplier = 1;
+        }
+
         double yAxis = -controller.getRawAxis(translationAxis);  //Flips the controller values as needed and gets the value of each axis
         double xAxis = -controller.getRawAxis(strafeAxis);
         double rAxis = -controller.getRawAxis(rotationAxis);
@@ -48,8 +66,8 @@ public class TeleopSwerve extends CommandBase {
         rAxis = (Math.abs(rAxis) < Constants.stickDeadband) ? 0 : rAxis;
         //Syntax for this stuff is `variable = TheBoolean ? ifTrue : ifFalse` ^^^^^
 
-        translation = new Translation2d(yAxis, xAxis).times(Constants.Swerve.maxSpeed); //Adds option for speed multipler defined in constants
-        rotation = rAxis * Constants.Swerve.maxAngularVelocity;
+        translation = new Translation2d(trans_multiplier*yAxis, trans_multiplier*xAxis).times(Constants.Swerve.maxSpeed); //Adds option for speed multipler defined in constants
+        rotation = rot_multiplier * rAxis * Constants.Swerve.maxAngularVelocity;
         swerveSubsystem.drive(translation, rotation, fieldRelative, openLoop);
     }
 }
