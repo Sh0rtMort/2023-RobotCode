@@ -31,7 +31,7 @@ public class StraightDock extends SequentialCommandGroup {
                 // Should go in a straight line
                 List.of(
                     new Translation2d(1, 0)), //1st point 1 meter ahead of where we started
-                new Pose2d(3.5, 0, new Rotation2d(0)), //Sets end pose 3 meters ahead of starting point
+                new Pose2d(3.25, 0, new Rotation2d(0)), //Sets end pose 3 meters ahead of starting point
                 config);
 
         PIDController xController = new PIDController(Constants.AutoConstants.kPXController, 0, 0);
