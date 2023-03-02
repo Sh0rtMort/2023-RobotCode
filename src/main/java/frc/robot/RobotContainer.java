@@ -94,14 +94,14 @@ public class RobotContainer {
     zeroGyro.onTrue(new InstantCommand(() -> swerveSubsystem.zeroGyro()));
     
     //Arm Buttons
-    armUpAndOut.whileTrue(armHigh);
-    armDownAndOut.whileTrue(armLow);
-    armStore.whileTrue(armStow);
-    armMiddle.whileTrue(armMid);
+    armUpAndOut.onTrue(armHigh);
+    armDownAndOut.onTrue(armLow);
+    armStore.onTrue(armStow);
+    armMiddle.onTrue(armMid);
 
     //Gripper Buttons
-    gripperOpen.whileTrue(greasyGripper9000Open);
-    gripperClose.whileTrue(greasyGripper9000Close);
+    gripperOpen.onTrue(greasyGripper9000Open);
+    gripperClose.onTrue(greasyGripper9000Close);
 
     //Debug Buttons
     motorRelease.onTrue(new InstantCommand(() -> armSubsystem.releaseAllMotors()));
