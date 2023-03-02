@@ -99,7 +99,7 @@ public final class Constants {
             public static final int gripperEncoderID = 34; //CAN ID for the gripper encoder assuming we use CAN based
 
             // Shoulder positions
-            public static final double shoulderHighPosition = -48265; //The high position of the shoulder should be -58935 if we are using the shoulder
+            public static final double shoulderHighPosition = -24265; //The high position of the shoulder should be -58935 if we are using the shoulder
             public static final double shoulderMidPosition = -9780; //The Midium position of the shoulder should be -9780 if we are using the shoulder
             public static final double shoulderLowPosition = -7177; //The low position of the shoulder should be -7177 if we are using the shoulder
             public static final double shoulderStorePosition = 0; //The Stored position of the shoulder
