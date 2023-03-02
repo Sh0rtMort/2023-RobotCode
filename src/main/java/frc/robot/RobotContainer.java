@@ -43,6 +43,7 @@ public class RobotContainer {
   // Creates button mappings on the controller
   private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kY.value); // Y button on the controller to zero the gyro
   private final int slowMode = XboxController.Button.kB.value;
+  private final JoystickButton autoBalance = new JoystickButton(driver, XboxController.Button.kA.value);
 
   private final JoystickButton armUpAndOut = new JoystickButton(arm, XboxController.Button.kY.value); // Arm up and out
   private final JoystickButton armDownAndOut = new JoystickButton(arm, XboxController.Button.kA.value); // Arm down and out
@@ -61,6 +62,7 @@ public class RobotContainer {
   private final ArmLow armLow = new ArmLow(armSubsystem);
   private final PutThoseGrippersAway armStow = new PutThoseGrippersAway(armSubsystem);
   private final ArmMid armMid = new ArmMid(armSubsystem);
+  private final ChargeBalance chargeBalance = new ChargeBalance(swerveSubsystem);
 
   private final GripperOpen greasyGripper9000Open = new GripperOpen(armSubsystem);
   private final GripperClose greasyGripper9000Close = new GripperClose(armSubsystem);
@@ -93,6 +95,7 @@ public class RobotContainer {
 
     //Drive Buttons
     zeroGyro.onTrue(new InstantCommand(() -> swerveSubsystem.zeroGyro()));
+    autoBalance.whileTrue(chargeBalance);
     
     //Arm Buttons
     armUpAndOut.onTrue(armHigh);
