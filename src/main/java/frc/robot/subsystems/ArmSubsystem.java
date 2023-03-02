@@ -38,11 +38,11 @@ public final void init() {
 
   //Set open and closed loop ramp rates
   shoulderFalcon.configOpenloopRamp(0);
-  shoulderFalcon.configClosedloopRamp(0);
+  shoulderFalcon.configClosedloopRamp(.5);
   elbowMotor.setOpenLoopRampRate(0);
-  elbowMotor.setClosedLoopRampRate(0);
+  elbowMotor.setClosedLoopRampRate(.5);
   wristMotor.setOpenLoopRampRate(0);
-  wristMotor.setClosedLoopRampRate(0);
+  wristMotor.setClosedLoopRampRate(.5);
   gripperFalcon.configOpenloopRamp(0);
   gripperFalcon.configClosedloopRamp(0);
 
