@@ -23,7 +23,7 @@ public final class Constants {
         public static final double wheelCircumference = wheelDiameter * Math.PI;
 
         //Acceleration and deceleration ramp times for the drive base
-        public static final double openLoopRamp = 0.3;
+        public static final double openLoopRamp = 0.5;
         public static final double closedLoopRamp = 0.0;
 
         // Swerve module Gear Ratio configuration constants
