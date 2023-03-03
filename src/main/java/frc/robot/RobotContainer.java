@@ -38,7 +38,8 @@ public class RobotContainer {
   private final int translationAxis = XboxController.Axis.kLeftY.value; //Y axis on left joystick, front to back motion
   private final int strafeAxis = XboxController.Axis.kLeftX.value; //X axis on the left joystick, left to right motion
   private final int rotationAxis = XboxController.Axis.kRightX.value; //X axis on the right joystick, turns the robot
-  private final int gripperAxis = XboxController.Axis.kRightX.value;
+  private final int wristAxis = XboxController.Axis.kLeftY.value;
+  private final int gripperAxis = 4;
 
   // Creates button mappings on the controller
   private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kY.value); // Y button on the controller to zero the gyro
@@ -78,7 +79,8 @@ public class RobotContainer {
     boolean fieldRelative = true; // Do you want field oriented control?
     boolean openLoop = true; 
     swerveSubsystem.setDefaultCommand(new TeleopSwerve(swerveSubsystem, driver, translationAxis, strafeAxis, rotationAxis, fieldRelative, openLoop, slowMode));  //Default command to drive the bot
-    //armSubsystem.setDefaultCommand(new ManualGripper(armSubsystem, arm, gripperAxis));
+    armSubsystem.setDefaultCommand(new ManualGripper(armSubsystem, arm, gripperAxis));
+    armSubsystem.setDefaultCommand(new WristManual(armSubsystem, arm, wristAxis));
     // Configure the button bindings
     configureButtonBindings();
 
@@ -123,8 +125,10 @@ public class RobotContainer {
       new StraightDock(swerveSubsystem)));
 
     autoChooser.addOption("Place Cube in Mid then Leave", new SequentialCommandGroup(
-      new DropCubeMid(swerveSubsystem, armSubsystem))
-    );
+      new DropCubeMid(swerveSubsystem, armSubsystem)));
+
+    autoChooser.addOption("Straight out to Dock with Balance", new SequentialCommandGroup(
+      new StraightDockWithAutoBal(swerveSubsystem)));
 
     SmartDashboard.putData(autoChooser);
   }

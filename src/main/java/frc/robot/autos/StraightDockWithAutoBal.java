@@ -1,6 +1,7 @@
 package frc.robot.autos;
 
 import frc.robot.Constants;
+import frc.robot.commands.ChargeBalance;
 import frc.robot.subsystems.Swerve;
 
 import java.util.List;
@@ -17,8 +18,8 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 
-public class StraightDock extends SequentialCommandGroup {
-    public StraightDock(Swerve swerveSubsystem){
+public class StraightDockWithAutoBal extends SequentialCommandGroup {
+    public StraightDockWithAutoBal(Swerve swerveSubsystem){
         TrajectoryConfig config = new TrajectoryConfig(
                 Constants.AutoConstants.kMaxSpeedMetersPerSecond, //Sets Max speed of the bot in auton
                 Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared) //Sets Max acceleration of the bot in auton
@@ -53,7 +54,11 @@ public class StraightDock extends SequentialCommandGroup {
 
         addCommands(
             new InstantCommand(() -> swerveSubsystem.resetOdometry(testingTrajectory.getInitialPose())),
-            swerveControllerCommand);
+            swerveControllerCommand.withTimeout(8));
+
+        addCommands(
+                new ChargeBalance(swerveSubsystem)
+        );
             
     }
 }
