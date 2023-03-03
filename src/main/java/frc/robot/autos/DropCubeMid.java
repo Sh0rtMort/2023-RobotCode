@@ -94,13 +94,13 @@ public class DropCubeMid extends SequentialCommandGroup {
 
     addCommands(
       new InstantCommand(() -> swerveSubsystem.resetOdometry(driveToGridTraj.getInitialPose())),
-      firstSwerveControllerCommand
+      firstSwerveControllerCommand.withTimeout(1.5)
     );
 
     addCommands(new SequentialCommandGroup(
       new GripperOpen(armSubsystem),
       new WaitCommand(0.5),
-      new PutThoseGrippersAway(armSubsystem)
+      new PutThoseGrippersAway(armSubsystem).withTimeout(1)
     ));
 
     addCommands (
