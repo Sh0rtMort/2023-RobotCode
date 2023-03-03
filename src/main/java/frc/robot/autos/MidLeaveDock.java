@@ -21,9 +21,9 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 
-public class InnerLeaveAndLevel extends SequentialCommandGroup {
+public class MidLeaveDock extends SequentialCommandGroup {
   /** Creates a new OutAndLevel. */
-  public InnerLeaveAndLevel(Swerve swerveSubsystem){
+  public MidLeaveDock(Swerve swerveSubsystem){
       TrajectoryConfig config = new TrajectoryConfig(
                 Constants.AutoConstants.kMaxSpeedMetersPerSecond, //Sets Max speed of the bot in auton
                 Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared) //Sets Max acceleration of the bot in auton
@@ -38,13 +38,13 @@ public class InnerLeaveAndLevel extends SequentialCommandGroup {
                     new Translation2d(1, 0), //1st point 1 meter ahead of where we started
                     new Translation2d(2, 0), //2nd point 2 meters ahead of where we started
                     new Translation2d(3, 0), //2nd point 2 meters ahead of where we started
-                    new Translation2d(4, 0), //1st point 1 meter ahead of where we started
+                    new Translation2d(4, 0), //2nd point 2 meters ahead of where we started
                     new Translation2d(5, 0), //2nd point 2 meters ahead of where we started
-                    new Translation2d(5, -1), //2nd point 2 meters ahead of where we started
-                    new Translation2d(5, -2), //1st point 1 meter ahead of where we started
-                    new Translation2d(4, -2), //2nd point 2 meters ahead of where we started
-                    new Translation2d(3, -2)), //2nd point 2 meters ahead of where we started
-                new Pose2d(3, -2, new Rotation2d(0)), //Sets end pose 3 meters ahead of starting point
+                    new Translation2d(6, 0), //2nd point 2 meters ahead of where we started
+                    new Translation2d(7, 0), //2nd point 2 meters ahead of where we started
+                    new Translation2d(6, 0), //2nd point 2 meters ahead of where we started
+                    new Translation2d(5, 0)), //2nd point 2 meters ahead of where we started
+                new Pose2d(5, 0, new Rotation2d(0)), //Sets end pose 3 meters ahead of starting point
                 config);
 
         PIDController xController = new PIDController(Constants.AutoConstants.kPXController, 0, 0);

@@ -123,8 +123,16 @@ public class RobotContainer {
       new StraightDock(swerveSubsystem)));
 
     autoChooser.addOption("Place Cube in Mid then Leave", new SequentialCommandGroup(
-      new DropCubeMid(swerveSubsystem, armSubsystem))
-    );
+      new DropCubeMid(swerveSubsystem, armSubsystem)));
+
+    autoChooser.addOption("Leave Community Zone from outer Blue/InnerRed field and Dock", new SequentialCommandGroup(
+      new OuterBlueInnerRedLeaveAndLevel(swerveSubsystem)));
+
+    autoChooser.addOption("Leave Community Zone from outer Blue/Inner field and Dock", new SequentialCommandGroup(
+      new InnerBlueOuterRedLeaveAndLevel(swerveSubsystem)));
+
+    autoChooser.addOption("Leave Community Zone from Mid and Dock", new SequentialCommandGroup(
+      new MidLeaveDock(swerveSubsystem)));
 
     SmartDashboard.putData(autoChooser);
   }

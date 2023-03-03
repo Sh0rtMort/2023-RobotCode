@@ -21,9 +21,9 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 
-public class OuterLeaveAndLevel extends SequentialCommandGroup {
+public class OuterBlueInnerRedLeaveAndLevel extends SequentialCommandGroup {
   /** Creates a new OutAndLevel. */
-  public OuterLeaveAndLevel(Swerve swerveSubsystem){
+  public OuterBlueInnerRedLeaveAndLevel(Swerve swerveSubsystem){
       TrajectoryConfig config = new TrajectoryConfig(
                 Constants.AutoConstants.kMaxSpeedMetersPerSecond, //Sets Max speed of the bot in auton
                 Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared) //Sets Max acceleration of the bot in auton
