@@ -113,7 +113,7 @@ public final class Constants {
             // Wrist positions
             public static final double wristHighPosition = -61.929683685302734; //The high position of the wrist should be -31.47592544555664 if we are using the shoulder
             public static final double wristMidPosition = -60.2148399; //The Midium position of the wrist should be -20.66657829284668 if we are using the shoulder
-            public static final double wristLowPosition = -50.571195602416992; //The low position of the wrist should be -60.92958450317383 if we are using the shoulder
+            public static final double wristLowPosition = -47.571195602416992; //The low position of the wrist should be -60.92958450317383 if we are using the shoulder
             public static final double wristStorePosition = 0; //The Stored position of the elbow
 
             // Claw/gripper positions
