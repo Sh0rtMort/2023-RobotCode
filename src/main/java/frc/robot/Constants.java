@@ -106,19 +106,19 @@ public final class Constants {
             
             // Elbow positions
             public static final double elbowHighPosition = -55.096073150634766; //The high position of the elbow should be -51.52390670776367 if we are using the shoulder
-            public static final double elbowMidPosition = -21.642751; //The Midium position of the elbow should be -12.238142967224121 if we are using the shoulder
-            public static final double elbowLowPosition = -19.09517478; //The low position of the elbow should be -37.14250183105469 if we are using the shoulder
+            public static final double elbowMidPosition = -15.642751; //The Midium position of the elbow should be -12.238142967224121 if we are using the shoulder
+            public static final double elbowLowPosition = -25.785573959350586; //The low position of the elbow should be -37.14250183105469 if we are using the shoulder
             public static final double elbowStorePosition = 0; //The Stored position of the elbow
 
             // Wrist positions
             public static final double wristHighPosition = -61.929683685302734; //The high position of the wrist should be -31.47592544555664 if we are using the shoulder
-            public static final double wristMidPosition = -56.2148399; //The Midium position of the wrist should be -20.66657829284668 if we are using the shoulder
-            public static final double wristLowPosition = -20.21420669; //The low position of the wrist should be -60.92958450317383 if we are using the shoulder
+            public static final double wristMidPosition = -52.2148399; //The Midium position of the wrist should be -20.66657829284668 if we are using the shoulder
+            public static final double wristLowPosition = -44.571195602416992; //The low position of the wrist should be -60.92958450317383 if we are using the shoulder
             public static final double wristStorePosition = 0; //The Stored position of the elbow
 
             // Claw/gripper positions
             public static final double gripperOpenPosition = 500; //The open position of the gripper
-            public static final double gripperClosedPosition = 80289; //The closed position of the gripper
+            public static final double gripperClosedPosition = 95289; //The closed position of the gripper
 
             // PID values for the Shoulder
             public static final double shoulderKP = 0.075; //P value for shoulder motor FIXME BY TUNING

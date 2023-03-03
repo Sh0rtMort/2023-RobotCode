@@ -27,8 +27,8 @@ public class ChargeBalance extends CommandBase {
         this.m_Swerve = m_Swerve;
         addRequirements(m_Swerve);
 
-        this.xPIDController = new PIDController(AutoConstants.kPXController, AutoConstants.kIXController, AutoConstants.kDXController);
-        xPIDController.setTolerance(5);
+        this.xPIDController = new PIDController(.05, AutoConstants.kIXController, AutoConstants.kDXController);
+        xPIDController.setTolerance(100);
 
         xPIDController.setSetpoint(0);
   }
@@ -36,20 +36,20 @@ public class ChargeBalance extends CommandBase {
   @Override
   public void execute() {
 
-    double xSpeed = xPIDController.calculate(m_Swerve.getPitch());
+    double xSpeed = xPIDController.calculate(m_Swerve.getRoll());
 
-    trans = new Translation2d(xSpeed, 0);
+    trans = new Translation2d(-xSpeed, 0);
 
-    m_Swerve.drive(trans, 0, true, false);
+    m_Swerve.drive(trans, 0, true, true);
 
-    SmartDashboard.putNumber("Pitch", m_Swerve.getPitch());
+    SmartDashboard.putNumber("Roll", m_Swerve.getRoll());
     SmartDashboard.putNumber("xSpeed", xSpeed);
   }
 
   @Override
   public void end(boolean interrupted) {
     endingTranslation = new Translation2d(0, 0);
-    m_Swerve.drive(endingTranslation, 0, true, false);
+    m_Swerve.drive(endingTranslation, 0, true, true);
     System.out.println("Auto Balance Stopped!!!!!"); //Prints to the console
   }
 
