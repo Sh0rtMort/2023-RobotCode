@@ -13,8 +13,8 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 import frc.robot.autos.*;
 import frc.robot.commands.*;
-import frc.robot.commands.Arm.*;
-import frc.robot.commands.Claw.*;
+import frc.robot.commands.IntakeControl;
+import frc.robot.commands.ArmCommand;
 import frc.robot.subsystems.*;
 
 /**
@@ -24,9 +24,9 @@ import frc.robot.subsystems.*;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  // Creates new joystick object for the driver on port 0
+
   private final Joystick driver = new Joystick(0);
-  private final Joystick arm = new Joystick(1);
+  // private final Joystick arm = new Joystick(1);
 
   // Creates the Axis variables mapped to various joysticks on the gamepad
   private final int translationAxis = XboxController.Axis.kLeftY.value; //Y axis on left joystick, front to back motion
@@ -35,32 +35,28 @@ public class RobotContainer {
 
   // Creates button mappings on the controller
   private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kY.value); // Y button on the controller to zero the gyro
-  private final JoystickButton armUpAndOut = new JoystickButton(arm, 3); // Arm up and out
-  private final JoystickButton armDownAndOut = new JoystickButton(arm, 2); // Arm down and out
-  private final JoystickButton armStore = new JoystickButton(arm, 4); // Default position
-  private final JoystickButton armMiddle = new JoystickButton(arm, 5); // Place object in middle row
-  private final JoystickButton motorRelease = new JoystickButton(arm, 8); //Arm free fall
-  private final JoystickButton zeroArmEncoders = new JoystickButton(arm, 9); 
-  private final JoystickButton gripperOpen = new JoystickButton(arm, 6); //Opens claw
-  private final JoystickButton gripperClose = new JoystickButton(arm, 7); //Close claw
+  private final JoystickButton intakeSuckButton = new JoystickButton(driver, 5);
+  private final JoystickButton intakeSpitButton = new JoystickButton(driver, 6);
+  private final JoystickButton armUpButton = new JoystickButton(driver, 3);
+  private final JoystickButton armDownButton = new JoystickButton(driver, 2);
 
+  // private final JoystickButton motorRelease = new JoystickButton(driver, XboxController.Button.kStart);
 
   // Define the Swerve subsystem as swerveSubsystem
   private final Swerve swerveSubsystem = new Swerve();
   private final ArmSubsystem armSubsystem = new ArmSubsystem();
 
-  private final ArmHigh armHigh = new ArmHigh(armSubsystem);
-  private final ArmLow armLow = new ArmLow(armSubsystem);
-  private final PutThoseGrippersAway armStow = new PutThoseGrippersAway(armSubsystem);
-  private final ArmMid armMid = new ArmMid(armSubsystem);
+    private final IntakeControl intakeSuck = new IntakeControl(armSubsystem, 0.55);
+    private final IntakeControl intakeSpit = new IntakeControl(armSubsystem, -0.85);
 
-  private final GripperOpen greasyGripper9000Open = new GripperOpen(armSubsystem);
-  private final GripperClose greasyGripper9000Close = new GripperClose(armSubsystem);
+    private final ArmCommand armUp = new ArmCommand(armSubsystem, -0.8);
+    private final ArmCommand armDown = new ArmCommand(armSubsystem, 0.8);
+
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    boolean fieldRelative = true; // Do you want field oriented control?
+    boolean fieldRelative = false; // Do you want field oriented control?
     boolean openLoop = true; 
     swerveSubsystem.setDefaultCommand(new TeleopSwerve(swerveSubsystem, driver, translationAxis, strafeAxis, rotationAxis, fieldRelative, openLoop));  //Default command to drive the bot
     // Configure the button bindings
@@ -77,23 +73,21 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
 
+    
     //Drive Buttons
     zeroGyro.onTrue(new InstantCommand(() -> swerveSubsystem.zeroGyro()));
-    
-    //Arm Buttons
-    armUpAndOut.whileTrue(armHigh);
-    armDownAndOut.whileTrue(armLow);
-    armStore.whileTrue(armStow);
-    armMiddle.whileTrue(armMid);
 
-    //Gripper Buttons
-    gripperOpen.whileTrue(greasyGripper9000Open);
-    gripperClose.whileTrue(greasyGripper9000Close);
+    armUpButton.whileTrue(armUp);
+    armDownButton.whileTrue(armDown);
+
+    intakeSpitButton.whileTrue(intakeSpit);
+    intakeSuckButton.whileTrue(intakeSuck);
+
 
     //Debug Buttons
-    motorRelease.onTrue(new InstantCommand(() -> armSubsystem.releaseAllMotors()));
-    motorRelease.onFalse(new InstantCommand(() -> armSubsystem.brakeAllMotors()));
-    zeroArmEncoders.onTrue(new InstantCommand(() -> armSubsystem.zeroAllEncoders()));
+    // motorRelease.onTrue(new InstantCommand(() -> armSubsystem.releaseAllMotors()));
+    // motorRelease.onFalse(new InstantCommand(() -> armSubsystem.brakeAllMotors()));
+    // zeroArmEncoders.onTrue(new InstantCommand(() -> armSubsystem.zeroAllEncoders()));
   }
 
   /**

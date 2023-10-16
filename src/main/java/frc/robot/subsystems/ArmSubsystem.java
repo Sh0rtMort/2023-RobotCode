@@ -1,6 +1,6 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
+// // Copyright (c) FIRST and other WPILib contributors.
+// // Open Source Software; you can modify and/or share it under the terms of
+// // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.subsystems;
 
@@ -9,130 +9,179 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
-import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Constants;
-import frc.robot.Constants.Swerve.Arm;
-
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.CANSparkMaxLowLevel.PeriodicFrame;
-import com.revrobotics.CANSparkMax.IdleMode;
 
-/** Add your docs here. */
+import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Constants;
+// import frc.robot.Constants.Swerve.Arm;
+
+// import com.revrobotics.CANSparkMax;
+// import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+// import com.revrobotics.CANSparkMaxLowLevel.PeriodicFrame;
+// import com.revrobotics.CANSparkMax.IdleMode;
+
+// /** Add your docs here. */
 public class ArmSubsystem extends SubsystemBase {
 
- private TalonFX shoulderFalcon = new TalonFX(Arm.shoulderMotorID);
- private CANSparkMax elbowMotor = new CANSparkMax(Arm.elbowMotorID, MotorType.kBrushless);
- private CANSparkMax wristMotor = new CANSparkMax(Arm.wristMotorID, MotorType.kBrushless);
- private TalonFX gripperFalcon = new TalonFX(Arm.gripperMotorID);
+//  private TalonFX shoulderFalcon = new TalonFX(Arm.shoulderMotorID);
+//  private CANSparkMax elbowMotor = new CANSparkMax(Arm.elbowMotorID, MotorType.kBrushless);
+//  private CANSparkMax wristMotor = new CANSparkMax(Arm.wristMotorID, MotorType.kBrushless);
+//  private TalonFX gripperFalcon = new TalonFX(Arm.gripperMotorID);
 
- private double WristSpeed = 0;
+    private TalonFX winchMotor = new TalonFX(13);
+    private CANSparkMax intakeMotorLeft = new CANSparkMax(23, MotorType.kBrushless);
+    private CANSparkMax intakeMotorRight = new CANSparkMax(17, MotorType.kBrushless);
+    private MotorControllerGroup intake = new MotorControllerGroup(intakeMotorLeft, intakeMotorRight);
+
+
+//  private double WristSpeed = 0;
 
 //Set neuteral mode to brake for each motor
 public final void init() {
-  shoulderFalcon.setNeutralMode(NeutralMode.Brake);
-  elbowMotor.setIdleMode(IdleMode.kBrake);
-  wristMotor.setIdleMode(IdleMode.kBrake);
-  gripperFalcon.setNeutralMode(NeutralMode.Brake);
+//   shoulderFalcon.setNeutralMode(NeutralMode.Brake);
+//   elbowMotor.setIdleMode(IdleMode.kBrake);
+//   wristMotor.setIdleMode(IdleMode.kBrake);
+//   gripperFalcon.setNeutralMode(NeutralMode.Brake);
+
+    winchMotor.setNeutralMode(NeutralMode.Brake);
+    intakeMotorLeft.setIdleMode(IdleMode.kBrake);
+    intakeMotorRight.setIdleMode(IdleMode.kBrake);
+
+    winchMotor.configOpenloopRamp(0);
+    winchMotor.configClosedloopRamp(0);
+    intakeMotorLeft.setOpenLoopRampRate(0);
+    intakeMotorLeft.setClosedLoopRampRate(0);
+    intakeMotorRight.setOpenLoopRampRate(0);
+    intakeMotorRight.setClosedLoopRampRate(0);
+
+    intakeMotorLeft.setPeriodicFramePeriod(PeriodicFrame.kStatus2, 60);
+    intakeMotorRight.setPeriodicFramePeriod(PeriodicFrame.kStatus2, 60);
+
+
+    //LEFT MOTOR IS INVERTED
+    intakeMotorLeft.setInverted(true);
 
   //Set open and closed loop ramp rates
-  shoulderFalcon.configOpenloopRamp(0);
-  shoulderFalcon.configClosedloopRamp(0);
-  elbowMotor.setOpenLoopRampRate(0);
-  elbowMotor.setClosedLoopRampRate(0);
-  wristMotor.setOpenLoopRampRate(0);
-  wristMotor.setClosedLoopRampRate(0);
-  gripperFalcon.configOpenloopRamp(0);
-  gripperFalcon.configClosedloopRamp(0);
+//   shoulderFalcon.configOpenloopRamp(0);
+//   shoulderFalcon.configClosedloopRamp(0);
+//   elbowMotor.setOpenLoopRampRate(0);
+//   elbowMotor.setClosedLoopRampRate(0);
+//   wristMotor.setOpenLoopRampRate(0);
+//   wristMotor.setClosedLoopRampRate(0);
+//   gripperFalcon.configOpenloopRamp(0);
+//   gripperFalcon.configClosedloopRamp(0);
 
   //Set the encoder values to read every 30 ms
-  elbowMotor.setPeriodicFramePeriod(PeriodicFrame.kStatus2, 60);
-  wristMotor.setPeriodicFramePeriod(PeriodicFrame.kStatus2, 60);
+//   elbowMotor.setPeriodicFramePeriod(PeriodicFrame.kStatus2, 60);
+//   wristMotor.setPeriodicFramePeriod(PeriodicFrame.kStatus2, 60);
 
 }
 
-  public void setSpeeds(double shoulderSpeed, double elbowSpeed, double wristSpeed) {
-    this.WristSpeed = wristSpeed;
-    shoulderFalcon.set(ControlMode.PercentOutput, shoulderSpeed);    
-    elbowMotor.set(elbowSpeed);
-    wristMotor.set(wristSpeed);
+  public void setSpeeds(double winchSpeed) {
+    // this.WristSpeed = wristSpeed;
+    // shoulderFalcon.set(ControlMode.PercentOutput, shoulderSpeed);    
+    // elbowMotor.set(elbowSpeed);
+    // wristMotor.set(wristSpeed);
 
+    winchMotor.set(ControlMode.PercentOutput, winchSpeed);
+    
   }
 
-  public void setGripperSpeed(double gripperSpeed) {
-    gripperFalcon.set(ControlMode.PercentOutput, gripperSpeed);
+  //TODO: Update this to match new intake after updating motors
+  public void setGripperSpeed(double intakeSpeed) {
+    // gripperFalcon.set(ControlMode.PercentOutput, gripperSpeed);
+    // intake.set(intakeSpeed);
+    intakeMotorLeft.set(-intakeSpeed);
+    intakeMotorRight.set(intakeSpeed);
   }
 
-public void stopMotor() {
-  shoulderFalcon.set(ControlMode.PercentOutput, 0);
-  elbowMotor.set(0);
-  wristMotor.set(0);
+public void stopAllMotors() {
+    winchMotor.set(ControlMode.PercentOutput, 0);
+    intake.set(0);
 }
 
 public void stopGripper() {
-  gripperFalcon.set(ControlMode.PercentOutput, 0);
+    intake.set(9-9);
 }
 
-public double getShoulderAngle() {
-  return shoulderFalcon.getSelectedSensorPosition() ;
-}
+// public double getShoulderAngle() {
+//   return shoulderFalcon.getSelectedSensorPosition() ;
+// }
 
-public double getElbowAngle() {
-  return elbowMotor.getEncoder().getPosition();
-}
+// public double getElbowAngle() {
+//   return elbowMotor.getEncoder().getPosition();
+// }
 
-public double getWristAngle() {
-  return wristMotor.getEncoder().getPosition();
-}
+// public double getWristAngle() {
+//   return wristMotor.getEncoder().getPosition();
+// }
 
-public double getgripperPosition() {
-  return gripperFalcon.getSelectedSensorPosition();
-}
+// public double getgripperPosition() {
+//   return gripperFalcon.getSelectedSensorPosition();
+// }
 
-public double getShoulderDegrees() {
-  return shoulderFalcon.getSelectedSensorPosition() * 360 / 4096; //TODO Compensate for gearbox ratio
-}
+// public double getShoulderDegrees() {
+//   return shoulderFalcon.getSelectedSensorPosition() * 360 / 4096; //TODO Compensate for gearbox ratio
+// }
 
-public double getElbowDegrees() {
-  return elbowMotor.getEncoder().getPosition() * 360 / 42; //TODO Compensate for gearbox ratio
-}
+// public double getElbowDegrees() {
+//   return elbowMotor.getEncoder().getPosition() * 360 / 42; //TODO Compensate for gearbox ratio
+// }
 
-public double getWristDegrees() {
-  return wristMotor.getEncoder().getPosition() * 360 / 42; //TODO Compensate for gearbox ratio
-}
+// public double getWristDegrees() {
+//   return wristMotor.getEncoder().getPosition() * 360 / 42; //TODO Compensate for gearbox ratio
+// }
 
 public void zeroAllEncoders() {
-  shoulderFalcon.setSelectedSensorPosition(0);
-  elbowMotor.getEncoder().setPosition(0);
-  wristMotor.getEncoder().setPosition(0);
-  gripperFalcon.setSelectedSensorPosition(0);
+//   shoulderFalcon.setSelectedSensorPosition(0);
+//   elbowMotor.getEncoder().setPosition(0);
+//   wristMotor.getEncoder().setPosition(0);
+//   gripperFalcon.setSelectedSensorPosition(0);
+    winchMotor.setSelectedSensorPosition(0);
+    intakeMotorLeft.getEncoder().setPosition(0);
+    intakeMotorRight.getEncoder().setPosition(0);
+
   System.out.println("Arm Encoders Zeroed");
 }
 
 public void releaseAllMotors() {
-shoulderFalcon.setNeutralMode(NeutralMode.Coast);
-elbowMotor.setIdleMode(IdleMode.kCoast);
-wristMotor.setIdleMode(IdleMode.kCoast);
-gripperFalcon.setNeutralMode(NeutralMode.Coast);
+// shoulderFalcon.setNeutralMode(NeutralMode.Coast);
+// elbowMotor.setIdleMode(IdleMode.kCoast);
+// wristMotor.setIdleMode(IdleMode.kCoast);
+// gripperFalcon.setNeutralMode(NeutralMode.Coast);
+winchMotor.setNeutralMode(NeutralMode.Coast);
+intakeMotorLeft.setIdleMode(IdleMode.kCoast);
+intakeMotorRight.setIdleMode(IdleMode.kCoast);
+
 System.out.println("Motors Released!");
 }
 
 public void brakeAllMotors() {
-  shoulderFalcon.setNeutralMode(NeutralMode.Brake);
-  elbowMotor.setIdleMode(IdleMode.kBrake);
-  wristMotor.setIdleMode(IdleMode.kBrake);
-  gripperFalcon.setNeutralMode(NeutralMode.Brake);
+//   shoulderFalcon.setNeutralMode(NeutralMode.Brake);
+//   elbowMotor.setIdleMode(IdleMode.kBrake);
+//   wristMotor.setIdleMode(IdleMode.kBrake);
+//   gripperFalcon.setNeutralMode(NeutralMode.Brake);
+    winchMotor.setNeutralMode(NeutralMode.Brake);
+    intakeMotorLeft.setIdleMode(IdleMode.kBrake);
+    intakeMotorRight.setIdleMode(IdleMode.kBrake);
+
   System.out.println("Motors Braked!");
   }
 
 @Override
 public void periodic(){
-  SmartDashboard.putNumber("Shoulder Position: ", getShoulderAngle());
-  SmartDashboard.putNumber("Elbow Position: ", getElbowAngle());
-  SmartDashboard.putNumber("Wrist Position: ", getWristAngle());
-  SmartDashboard.putNumber("gripper Position: ", getgripperPosition());
-  SmartDashboard.putNumber("Wrist Speed: ", WristSpeed);
+//   SmartDashboard.putNumber("Shoulder Position: ", getShoulderAngle());
+//   SmartDashboard.putNumber("Elbow Position: ", getElbowAngle());
+//   SmartDashboard.putNumber("Wrist Position: ", getWristAngle());
+//   SmartDashboard.putNumber("gripper Position: ", getgripperPosition());
+//   SmartDashboard.putNumber("Wrist Speed: ", WristSpeed);
+
+//TODO: Honestly dont care about these
 }
 
 }

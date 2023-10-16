@@ -27,8 +27,8 @@ public final class Constants {
         public static final double closedLoopRamp = 0.0;
 
         // Swerve module Gear Ratio configuration constants
-        public static final double driveGearRatio = (8.14 / 1.0); //8.14:1 For MK4 L1 Modules
-        public static final double angleGearRatio = (12.8 / 1.0); //12.8:1 For MK4 L1 Modules
+        public static final double driveGearRatio = (6.75 / 1.0); //8.14:1 For MK4 L1 Modules
+        public static final double angleGearRatio = (150 / 7); //12.8:1 For MK4 L1 Modules
 
         //Easy reference for the Swerve Drive Kinematics for future use
         public static final SwerveDriveKinematics swerveKinematics = new SwerveDriveKinematics(
@@ -68,8 +68,8 @@ public final class Constants {
         public static final double driveKA = (0.046425 / 12);
 
         //Max drive speed and max angular velocity of your robot
-        public static final double maxSpeed = 5; //Max speed of your bot in meters per second
-        public static final double maxAngularVelocity = 5; //Max Angular Velocity of your bot, fancy way of saying radians per second of rotation
+        public static final double maxSpeed = 3; //Max speed of your bot in meters per second
+        public static final double maxAngularVelocity = 0.5; //Max Angular Velocity of your bot, fancy way of saying radians per second of rotation
 
         //Set the neutral mode for the angle and drive motors
         public static final NeutralMode angleNeutralMode = NeutralMode.Coast; //Sets angle motors to either coast or brake mode
@@ -85,100 +85,100 @@ public final class Constants {
         //CAN IDs and angle offsets for each module
         //Config for Module 0, Front left
         public static final class Mod0 {
-            public static final int driveMotorID = 4; //CAN ID for the drive motor
-            public static final int angleMotorID = 3; //CAN ID for the angle/steerer motor
-            public static final int canCoderID = 10; //CAN ID for steer encoder
-            public static final double angleOffset = 296.016; //CANCoder Angle offset
+            public static final int driveMotorID = 10; //CAN ID for the drive motor
+            public static final int angleMotorID = 11; //CAN ID for the angle/steerer motor
+            public static final int canCoderID = 12; //CAN ID for steer encoder
+            public static final double angleOffset = 242; //CANCoder Angle offset
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset); //Sets the constant values for the module
         }
 
         // TO DO: Get propper values for Midium positions on all arm motors
         // Arm Motor variables
-        public static final class Arm {
+        // public static final class Arm {
 
-            // CAN IDs for Arm Motors
-            public static final int shoulderMotorID = 21; //CAN ID for the shoulder motor
-            public static final int elbowMotorID = 22; //CAN ID for the elbow motor
-            public static final int wristMotorID = 23; //CAN ID for the wrist motor
-            public static final int gripperMotorID = 24; //CAN ID for the gripper motor
+        //     // CAN IDs for Arm Motors
+        //     public static final int shoulderMotorID = 21; //CAN ID for the shoulder motor
+        //     public static final int elbowMotorID = 22; //CAN ID for the elbow motor
+        //     public static final int wristMotorID = 23; //CAN ID for the wrist motor
+        //     public static final int gripperMotorID = 24; //CAN ID for the gripper motor
 
-            //CAN IDs for the Arm motor encoders
-            public static final int shoulderEncoderID = 31; //CAN ID for the shoulder encoder assuming we use CAN based
-            public static final int elbowEncoderID = 32; //CAN ID for the elbow encoder assuming we use CAN based
-            public static final int wristEncoderID = 33; //CAN ID for the wrist encoder assuming we use CAN based
-            public static final int gripperEncoderID = 34; //CAN ID for the gripper encoder assuming we use CAN based
+        //     //CAN IDs for the Arm motor encoders
+        //     public static final int shoulderEncoderID = 31; //CAN ID for the shoulder encoder assuming we use CAN based
+        //     public static final int elbowEncoderID = 32; //CAN ID for the elbow encoder assuming we use CAN based
+        //     public static final int wristEncoderID = 33; //CAN ID for the wrist encoder assuming we use CAN based
+        //     public static final int gripperEncoderID = 34; //CAN ID for the gripper encoder assuming we use CAN based
 
-            // Shoulder positions
-            public static final double shoulderHighPosition = -48265; //The high position of the shoulder
-            public static final double shoulderMidPosition = 0; //The Midium position of the shoulder
-            public static final double shoulderLowPosition = -7177; //The low position of the shoulder
-            public static final double shoulderStorePosition = 0; //The Stored position of the shoulder
+        //     // Shoulder positions
+        //     public static final double shoulderHighPosition = -48265; //The high position of the shoulder
+        //     public static final double shoulderMidPosition = 0; //The Midium position of the shoulder
+        //     public static final double shoulderLowPosition = -7177; //The low position of the shoulder
+        //     public static final double shoulderStorePosition = 0; //The Stored position of the shoulder
             
-            // Elbow positions
-            public static final double elbowHighPosition = -55.096073150634766; //The high position of the elbow
-            public static final double elbowMidPosition = -14.666643142700195; //The Midium position of the elbow
-            public static final double elbowLowPosition = -37.14250183105469; //The low position of the elbow
-            public static final double elbowStorePosition = 0; //The Stored position of the elbow
+        //     // Elbow positions
+        //     public static final double elbowHighPosition = -55.096073150634766; //The high position of the elbow
+        //     public static final double elbowMidPosition = -14.666643142700195; //The Midium position of the elbow
+        //     public static final double elbowLowPosition = -37.14250183105469; //The low position of the elbow
+        //     public static final double elbowStorePosition = 0; //The Stored position of the elbow
 
-            // Wrist positions
-            public static final double wristHighPosition = -61.929683685302734; //The high position of the wrist
-            public static final double wristMidPosition = -35.714065551757812; //The Midium position of the wrist. 
-            public static final double wristLowPosition = -60.92958450317383; //The low position of the wrist
-            public static final double wristStorePosition = 0; //The Stored position of the elbow
+        //     // Wrist positions
+        //     public static final double wristHighPosition = -61.929683685302734; //The high position of the wrist
+        //     public static final double wristMidPosition = -35.714065551757812; //The Midium position of the wrist. 
+        //     public static final double wristLowPosition = -60.92958450317383; //The low position of the wrist
+        //     public static final double wristStorePosition = 0; //The Stored position of the elbow
 
-            // Claw/gripper positions
-            public static final double gripperOpenPosition = 500; //The open position of the gripper
-            public static final double gripperClosedPosition = 80289; //The closed position of the gripper
+        //     // Claw/gripper positions
+        //     public static final double gripperOpenPosition = 500; //The open position of the gripper
+        //     public static final double gripperClosedPosition = 80289; //The closed position of the gripper
 
-            // PID values for the Shoulder
-            public static final double shoulderKP = 0; //P value for shoulder motor FIXME BY TUNING
-            public static final double shoulderKI = 0; //I value for shoulder motor FIXME BY TUNING
-            public static final double shoulderKD = 0; //D value for shoulder motor FIXME BY TUNING
+        //     // PID values for the Shoulder
+        //     public static final double shoulderKP = 0; //P value for shoulder motor FIXME BY TUNING
+        //     public static final double shoulderKI = 0; //I value for shoulder motor FIXME BY TUNING
+        //     public static final double shoulderKD = 0; //D value for shoulder motor FIXME BY TUNING
             
-            // PID values for the Elbow
-            public static final double elbowKP = 0.02; //P value for elbow motor FIXME BY TUNING
-            public static final double elbowKI = 0.00013; //I value for elbow motor FIXME BY TUNING
-            public static final double elbowKD = 0.0001; //D value for elbow motor FIXME BY TUNING
+        //     // PID values for the Elbow
+        //     public static final double elbowKP = 0.02; //P value for elbow motor FIXME BY TUNING
+        //     public static final double elbowKI = 0.00013; //I value for elbow motor FIXME BY TUNING
+        //     public static final double elbowKD = 0.0001; //D value for elbow motor FIXME BY TUNING
 
-            // PID values for the Wrist
-            //If you change the speed in the command, change the values inversly and proportionally
-            public static final double wristKP = 0.02; //P value for wrist motor FIXME BY TUNING
-            public static final double wristKI = 0.0000; //I value for wrist motor FIXME BY TUNING
-            public static final double wristKD = 0.00000; //D value for wrist motor FIXME BY TUNING
+        //     // PID values for the Wrist
+        //     //If you change the speed in the command, change the values inversly and proportionally
+        //     public static final double wristKP = 0.02; //P value for wrist motor FIXME BY TUNING
+        //     public static final double wristKI = 0.0000; //I value for wrist motor FIXME BY TUNING
+        //     public static final double wristKD = 0.00000; //D value for wrist motor FIXME BY TUNING
             
-            // PID values for the gripper
-            public static final double gripperKP = 0.0001; //P value for gripper motor FIXME BY TUNING
-            public static final double gripperKI = 0; //I value for gripper motor FIXME BY TUNING
-            public static final double gripperKD = 0; //D value for gripper motor FIXME BY TUNING
-        }
+        //     // PID values for the gripper
+        //     public static final double gripperKP = 0.0001; //P value for gripper motor FIXME BY TUNING
+        //     public static final double gripperKI = 0; //I value for gripper motor FIXME BY TUNING
+        //     public static final double gripperKD = 0; //D value for gripper motor FIXME BY TUNING
+        // }
 
         // Config for Module 1, Front Right
         public static final class Mod1 {
-            public static final int driveMotorID = 2; //CAN ID for the drive motor
-            public static final int angleMotorID = 1; //CAN ID for the angle/steerer motor
+            public static final int driveMotorID = 7; //CAN ID for the drive motor
+            public static final int angleMotorID = 8; //CAN ID for the angle/steerer motor
             public static final int canCoderID = 9; //CAN ID for steer encoder
-            public static final double angleOffset = 158.730; //CANCoder Angle offset
+            public static final double angleOffset = 182; //CANCoder Angle offset
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset); //Sets the constant values for the module
         }
         
         // Config for Module 2, Back Left
         public static final class Mod2 {
-            public static final int driveMotorID = 6; //CAN ID for the drive motor
-            public static final int angleMotorID = 5; //CAN ID for the angle/steerer motor
-            public static final int canCoderID = 11; //CAN ID for steer encoder
-            public static final double angleOffset = 153.809-180.00; //CANCoder Angle offset
+            public static final int driveMotorID = 1; //CAN ID for the drive motor
+            public static final int angleMotorID = 2; //CAN ID for the angle/steerer motor
+            public static final int canCoderID = 3; //CAN ID for steer encoder
+            public static final double angleOffset = 100; //CANCoder Angle offset
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset); //Sets the constant values for the module
         }
 
         // Config for Module 3, Back Right
         public static final class Mod3 {
-            public static final int driveMotorID = 8; //CAN ID for the drive motor
-            public static final int angleMotorID = 7; //CAN ID for the angle/steerer motor
-            public static final int canCoderID = 12; //CAN ID for steer encoder
-            public static final double angleOffset = 72.158; //CANCoder Angle offset
+            public static final int driveMotorID = 0; //CAN ID for the drive motor
+            public static final int angleMotorID = 0; //CAN ID for the angle/steerer motor //TODO: Fix the ideas.
+            public static final int canCoderID = 6; //CAN ID for steer encoder
+            public static final double angleOffset = 325; //CANCoder Angle offset
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset); //Sets the constant values for the module
         }

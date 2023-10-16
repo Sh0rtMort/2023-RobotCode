@@ -111,7 +111,11 @@ public class Swerve extends SubsystemBase {
 
 
     public void zeroGyro(){
-        gyro.setYaw(0);
+        gyro.setYaw(90 );
+    }
+
+    public void zeroWheels() {
+
     }
 
 
@@ -129,9 +133,9 @@ public class Swerve extends SubsystemBase {
     public void periodic(){
         swerveOdometry.update(getYaw(), getModulePositions());  
 
-        for(SwerveModule mod : mSwerveMods){
-            SmartDashboard.putNumber("Mod " + mod.moduleNumber + " CANCoder", mod.getCanCoder().getDegrees());
+        for(SwerveModule mod : mSwerveMods){            
             SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Integrated encoder", mod.getState().angle.getDegrees());
+            SmartDashboard.putNumber("Mod " + mod.moduleNumber + " CANCoder", mod.getCanCoder().getDegrees());
             SmartDashboard.putNumber("Mod " + mod.moduleNumber + " WE ZOWOMIN HOW FAST", mod.getState().speedMetersPerSecond);
             //SmartDashboard.putNumber("Mod" + mod.moduleNumber + "Auton Voltages" + (mod.getState().speedMetersPerSecond / Constants.AutoConstants.kMaxSpeedMetersPerSecond * 13), 0);  
             SmartDashboard.putNumber("Mod" + mod.moduleNumber + " Angle_Current", mod.getAngleCurrent());
