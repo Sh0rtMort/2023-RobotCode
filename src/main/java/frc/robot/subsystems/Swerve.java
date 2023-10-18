@@ -18,6 +18,10 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Timer;
 import frc.robot.SwerveModule;
+import frc.robot.Constants.Swerve.Mod0;
+import frc.robot.Constants.Swerve.Mod1;
+import frc.robot.Constants.Swerve.Mod2;
+import frc.robot.Constants.Swerve.Mod3;
 import frc.robot.Constants;
 
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
@@ -59,14 +63,14 @@ public class Swerve extends SubsystemBase {
         SwerveModuleState[] swerveModuleStates =
             Constants.Swerve.swerveKinematics.toSwerveModuleStates(
                 fieldRelative ? ChassisSpeeds.fromFieldRelativeSpeeds(
-                                    translation.getX(), 
-                                    translation.getY(), 
+                                    -translation.getX(), 
+                                    -translation.getY(), 
                                     rotation, 
                                     getYaw()
                                 )
                                 : new ChassisSpeeds(
-                                    translation.getX(), 
-                                    translation.getY(), 
+                                    -translation.getX(), 
+                                    -translation.getY(), 
                                     rotation)
                                 );
         SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, Constants.Swerve.maxSpeed);
@@ -115,7 +119,7 @@ public class Swerve extends SubsystemBase {
     }
 
     public void zeroWheels() {
-
+        
     }
 
 
@@ -126,6 +130,24 @@ public class Swerve extends SubsystemBase {
     public void resetModulesToAbsolute(){
         for(SwerveModule mod : mSwerveMods){
             mod.resetToAbsolute();
+        }
+    }
+
+    private double desiredAngleArray[] = {Mod0.angleOffset, Mod1.angleOffset, Mod2.angleOffset, Mod3.angleOffset};
+
+    public void calibrateSwerveModules() {
+        for (int i = 0; i < 3; i++) {
+            double desiredAngle = desiredAngleArray[i]; // Get the desired angle for the current module
+            double currentAngle = mSwerveMods[i].getRotationAngle(); // Get the current angle from the encoder
+    
+            // Calculate the rotation needed to reach the desired angle
+            double rotation = desiredAngle - currentAngle;
+    
+            // Set the wheel angle and speed to rotate to the desired angle
+            //mSwerveMods[i].setDesiredAngle(desiredAngle);
+            //mSwerveMods[i].drive(rotation > 0 ? 0.1 : -0.1); // Adjust the speed to control the rotation direction
+            double krotation = rotation > 0 ? 0.1 : -0.1;
+            drive(null, krotation, false, false);
         }
     }
 

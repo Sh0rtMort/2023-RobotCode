@@ -62,7 +62,9 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
 
-    armSubsystem.zeroAllEncoders();
+    swerveSubsystem.calibrateSwerveModules();
+
+    // armSubsystem.zeroAllEncoders();
   }
 
   /**
@@ -89,6 +91,14 @@ public class RobotContainer {
     // motorRelease.onFalse(new InstantCommand(() -> armSubsystem.brakeAllMotors()));
     // zeroArmEncoders.onTrue(new InstantCommand(() -> armSubsystem.zeroAllEncoders()));
   }
+
+  public void disabledInit() {
+    swerveSubsystem.resetModulesToAbsolute();
+  }
+
+  
+
+
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.

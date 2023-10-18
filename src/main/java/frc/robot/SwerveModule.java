@@ -116,5 +116,13 @@ public class SwerveModule {
     public double getDriveCurrent(){
         return mDriveMotor.getSupplyCurrent();
     }
+
+    public void resetAngleEncoders() {
+        mAngleMotor.setSelectedSensorPosition(angleOffset);
+    }
+
+    public double getRotationAngle() {
+        return Conversions.falconToDegrees(mAngleMotor.getSelectedSensorPosition(), Constants.Swerve.angleGearRatio);
+    }
     
 }
